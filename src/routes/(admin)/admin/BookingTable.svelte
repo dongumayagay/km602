@@ -1,6 +1,7 @@
 <script>
 	import { collection, query, onSnapshot } from 'firebase/firestore';
 	import { db } from '$lib/firebase';
+	import { formatDateTime } from '$lib/utils';
 
 	let bookings = [];
 
@@ -18,8 +19,8 @@
 				<th>Name</th>
 				<th>EMAIL</th>
 				<th>PACKAGE</th>
-				<th>DATE</th>
-				<th>TIME</th>
+				<th>DATETIME</th>
+				<!-- <th>TIME</th> -->
 			</tr>
 		</thead>
 		<tbody>
@@ -29,8 +30,10 @@
 					<td>{booking.name}</td>
 					<td>{booking.email}</td>
 					<td>{booking.what}</td>
-					<td>{booking.date}</td>
-					<td>{booking.time}</td>
+					<td>
+						{formatDateTime(booking.date, booking.time)}
+					</td>
+					<!-- <td>{booking.time}</td> -->
 				</tr>
 			{/each}
 		</tbody>
