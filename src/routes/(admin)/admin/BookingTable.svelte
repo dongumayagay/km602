@@ -20,6 +20,7 @@
 				<th>EMAIL</th>
 				<th>PACKAGE</th>
 				<th>DATETIME</th>
+				<th>IS FINISH?</th>
 				<!-- <th>TIME</th> -->
 			</tr>
 		</thead>
@@ -33,8 +34,11 @@
 					<td>
 						{formatDateTime(booking.date, booking.time)}
 					</td>
+					<td>{booking.finish}</td>
 					<!-- <td>{booking.time}</td> -->
 				</tr>
+			{:else}
+				<h1>No carwash reservation yet</h1>
 			{/each}
 		</tbody>
 	</table>
