@@ -1,7 +1,22 @@
 <script>
 	import { formatDateTime } from '$lib/utils';
+	import { doc, updateDoc } from 'firebase/firestore';
+	import { db } from '$lib/firebase';
 
 	export let booking;
+
+	async function toggleFinish() {
+		console.log(!booking.finish);
+		const bookingDocRef = doc(db, 'bookings', booking.id);
+		try {
+			await updateDoc(bookingDocRef, {
+				finish: !booking.finish
+			});
+		} catch (error) {
+			console.log(error);
+			alert(error);
+		}
+	}
 </script>
 
 <tr>
@@ -14,7 +29,7 @@
 	</td>
 	<td>
 		<label class="swap">
-			<input bind:checked={booking.finish} type="checkbox" />
+			<input on:change={toggleFinish} bind:checked={booking.finish} type="checkbox" />
 			<div class="swap-on">DONE</div>
 			<div class="swap-off">NOT DONE</div>
 		</label>
