@@ -4,21 +4,20 @@
 	import { onAuthStateChanged } from 'firebase/auth';
 	import { auth } from '$lib/firebase';
 
+	let userSession;
+	let show = false;
 	onAuthStateChanged(auth, (user) => {
-		if (user) {
-			// User is signed in, see docs for a list of available properties
-			// https://firebase.google.com/docs/reference/js/firebase.User
-			// ...
-			console.log(user);
-		} else {
-			// User is signed out
-			// ...
-			console.log('walang nakalogin');
-		}
+		userSession = user;
+		show = true;
 	});
 </script>
 
-<h1>this is admin page</h1>
-
-<Sign />
-<Admin />
+{#if show}
+	{#if userSession}
+		<Admin />
+	{:else}
+		<Sign />
+	{/if}
+{:else}
+	<h1>loading</h1>
+{/if}
