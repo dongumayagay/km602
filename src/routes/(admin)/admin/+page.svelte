@@ -13,6 +13,10 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Admin</title>
+</svelte:head>
+
 {#if loading}
 	<h1>loading</h1>
 {:else}

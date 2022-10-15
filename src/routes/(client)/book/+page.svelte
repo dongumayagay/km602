@@ -23,6 +23,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Book | km602</title>
+</svelte:head>
+
 <form on:submit|preventDefault={submitHandler} class=" bg-red-400 p-4 flex flex-col gap-4">
 	<h1>BOOK NOW</h1>
 	<select required name="what">
