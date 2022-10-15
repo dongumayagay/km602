@@ -1,8 +1,19 @@
 <script>
-	function submitHandler(event) {
+	import { db } from '$lib/firebase';
+	import { collection, addDoc } from 'firebase/firestore';
+
+	async function submitHandler(event) {
 		const formData = new FormData(event.target);
 		const data = Object.fromEntries(formData);
 		console.log(data);
+
+		const bookingsCollectionReference = collection(db, 'bookings');
+		try {
+			const docRef = await addDoc(bookingsCollectionReference, data);
+			console.log(docRef);
+		} catch (error) {
+			console.log(error);
+		}
 	}
 </script>
 
