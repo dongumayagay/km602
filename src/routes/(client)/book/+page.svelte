@@ -10,9 +10,12 @@
 		const bookingsCollectionReference = collection(db, 'bookings');
 		try {
 			const docRef = await addDoc(bookingsCollectionReference, data);
+			event.target.reset();
 			console.log(docRef);
+			alert('success');
 		} catch (error) {
 			console.log(error);
+			alert(error);
 		}
 	}
 </script>
