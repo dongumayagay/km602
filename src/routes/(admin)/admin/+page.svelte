@@ -5,19 +5,20 @@
 	import { auth } from '$lib/firebase';
 
 	let userSession;
-	let show = false;
+	let loading = true;
 	onAuthStateChanged(auth, (user) => {
+		console.log(user);
 		userSession = user;
-		show = true;
+		loading = false;
 	});
 </script>
 
-{#if show}
-	{#if userSession}
-		<Admin />
-	{:else}
-		<Sign />
-	{/if}
-{:else}
+{#if loading}
 	<h1>loading</h1>
+{:else}
+	{#if userSession === null}
+		<Sign />
+	{:else}
+		<Admin />
+	{/if}
 {/if}
