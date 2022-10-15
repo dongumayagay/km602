@@ -1,24 +1,38 @@
+<script>
+	import { collection, query, onSnapshot } from 'firebase/firestore';
+	import { db } from '$lib/firebase';
+
+	let bookings = [];
+
+	const q = query(collection(db, 'bookings'));
+	const unsubscribe = onSnapshot(q, (querySnapshot) => {
+		bookings = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+	});
+</script>
+
 <div class="overflow-x-auto">
 	<table class="table w-full">
-		<!-- head -->
 		<thead>
 			<tr>
 				<th>ID</th>
 				<th>Name</th>
 				<th>EMAIL</th>
 				<th>PACKAGE</th>
-				<th>DATETIME</th>
+				<th>DATE</th>
+				<th>TIME</th>
 			</tr>
 		</thead>
 		<tbody>
-			<!-- row 1 -->
-			<tr>
-				<th>123</th>
-				<td>Cy Ganderton</td>
-				<td>cyg@gmail.com</td>
-				<td>PACKAGE 1</td>
-				<td>ngayon</td>
-			</tr>
+			{#each bookings as booking}
+				<tr>
+					<th>{booking.id}</th>
+					<td>{booking.name}</td>
+					<td>{booking.email}</td>
+					<td>{booking.what}</td>
+					<td>{booking.date}</td>
+					<td>{booking.time}</td>
+				</tr>
+			{/each}
 		</tbody>
 	</table>
 </div>
