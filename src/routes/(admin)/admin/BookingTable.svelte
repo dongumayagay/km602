@@ -1,7 +1,7 @@
 <script>
 	import { collection, query, onSnapshot } from 'firebase/firestore';
 	import { db } from '$lib/firebase';
-	import { formatDateTime } from '$lib/utils';
+	import BookingItem from './BookingItem.svelte';
 
 	let bookings = [];
 
@@ -21,22 +21,11 @@
 				<th>PACKAGE</th>
 				<th>DATETIME</th>
 				<th>IS FINISH?</th>
-				<!-- <th>TIME</th> -->
 			</tr>
 		</thead>
 		<tbody>
 			{#each bookings as booking}
-				<tr>
-					<th>{booking.id}</th>
-					<td>{booking.name}</td>
-					<td>{booking.email}</td>
-					<td>{booking.what}</td>
-					<td>
-						{formatDateTime(booking.date, booking.time)}
-					</td>
-					<td>{booking.finish}</td>
-					<!-- <td>{booking.time}</td> -->
-				</tr>
+				<BookingItem {booking} />
 			{:else}
 				<h1>No carwash reservation yet</h1>
 			{/each}
