@@ -2,6 +2,9 @@
 	import { auth } from '$lib/firebase';
 	import { signInWithEmailAndPassword } from 'firebase/auth';
 	import { goto } from '$app/navigation';
+	import { user } from '$lib/stores';
+
+	$: if ($user) goto('/admin');
 
 	async function submitHandler(event) {
 		const formData = new FormData(event.target);
