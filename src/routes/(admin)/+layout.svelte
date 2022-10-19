@@ -9,8 +9,8 @@
 
 	onMount(() => {
 		const unsubscribe = onAuthStateChanged(auth, async (userObj) => {
-			if (!userObj) await goto('/admin/signin');
 			$user = userObj;
+			if (!userObj) await goto('/admin/signin');
 			loading = false;
 		});
 		return () => unsubscribe();
