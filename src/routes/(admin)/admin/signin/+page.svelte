@@ -1,6 +1,10 @@
 <script>
 	import { auth } from '$lib/firebase';
 	import { signInWithEmailAndPassword } from 'firebase/auth';
+	import { goto } from '$app/navigation';
+	import { user } from '$lib/stores';
+
+	$: if ($user) goto('/admin');
 
 	async function submitHandler(event) {
 		const formData = new FormData(event.target);
@@ -8,6 +12,7 @@
 		console.log(data);
 		try {
 			await signInWithEmailAndPassword(auth, data.email, data.password);
+			await goto('/admin');
 		} catch (error) {
 			console.log(error);
 			alert(error);
