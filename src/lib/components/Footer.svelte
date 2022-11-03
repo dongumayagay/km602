@@ -1,4 +1,4 @@
-<footer class="footer p-10 bg-base-100 text-base-content">
+<footer class="footer p-10 bg-gray-100 text-base-content lg:px-16 px-4">
 	<div>
 		<span class="footer-title">About Us</span>
 		<a href="/" class="link link-hover">Branding</a>
@@ -27,7 +27,7 @@
 		<a href="/" class="link link-hover">Cookie policy</a>
 	</div>
 </footer>
-<footer class="footer px-10 py-4 border-t bg-base-100 text-base-content border-base-300">
+<footer class="footer px-10 py-4 border-t bg-gray-50 text-base-content border-base-300">
 	<div class="mx-auto">
 		<p>Copyright © 2022 - All right reserved by km602 Carwash</p>
 	</div>
