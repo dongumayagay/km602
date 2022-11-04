@@ -28,14 +28,14 @@
 	<title>Book | km602</title>
 </svelte:head>
 
-<main>
-	<div class="bg-blue-50 p-6">
-		<h1 class="font-semibold text-2xl pb-8">Booking Form</h1>
-		<div class="card bg-base-100 shadow-inner mx-auto py-4 mb-24">
-			<div class="card-body">
-				<h2 class="card-title">Fill out your details</h2>
-				<hr>
-				<form on:submit|preventDefault={submitHandler} class="grid grid-cols-2 gap-4 p-4">
+<main class="bg-blue-50">
+	<div class="min-h-screen lg:px-16 px-4 text-sky-700">
+		<p class="text-2xl py-16 text-center"><span class="font-bold">Booking </span> Carwash <span class="font-bold"> Reservation </span>Form</p>
+		<div class="lg:grid lg:grid-cols-3 gap-8">
+			<div class="col-span-2 bg-white rounded-lg p-8 drop-shadow-xl">
+				<p class="font-semibold text-black">Fill out your details</p>
+				<hr class="my-2">
+				<form on:submit|preventDefault={submitHandler} class="lg:grid lg:grid-cols-2 gap-4 py-4">
 					<div class="form-control">
 						<label for="#" class="label">
 							<span class="label-text font-medium">Full Name <span class="text-red-500 font-extrabold">*</span></span>
@@ -90,16 +90,49 @@
 						</label>
 						<input required name="time" type="time" placeholder="time" class="input input-bordered max-w-lg" />
 					</div>
-					<div class="card-actions justify-end col-span-2 pt-4">
-						<button class="btn btn-warning">Book Now</button>
+					<div class="pt-4">
+						<button class="btn btn-ghost bg-info hover:bg-info/75 text-white px-8 capitalize rounded-full text-base">Proceed</button>
 					</div>
 				</form>	
-				
 			</div>
-		</div>		
+			<div class="bg-white border-gray-300 text-black font-semibold grid content-between rounded-lg p-8 my-16 lg:m-0 drop-shadow-xl">
+				
+				
+				<div>
+					<p class=" text-black text-center mb-6">Total reservation summary</p>
+					<p class="label label-text p-0 mb-2">
+						<span>Date:</span>
+						<span>Status:</span>
+					</p>
+					<p class="text-sm py-1">Customer's Name:</p>
+					<p class="text-sm py-1">Vehicle Type:</p>
+					<p class="text-sm py-1">Date of Reservation:</p>
+					<p class="text-sm py-1">Time of Reservation:</p>					
+					<p class="label p-0 mt-6  label-text">
+						<span>Description</span>
+						<span>Price</span>
+					</p>
+					<p class="label p-0 my-1">
+						<span class="text-sm py-1">Type of wash</span>
+						<span class="text-sm py-1">PHP</span>
+					</p>
+					<p class="label p-0 my-1">
+						<span class="text-sm py-1">Type of wash</span>
+						<span class="text-sm py-1">PHP</span>
+					</p>
+					<hr class="my-2">
+					<p class="text-right text-sm">Total Amount: PHP</p>
+				</div>
+				
+				<div class="mt-5 lg:mt-0">
+					<button class="btn btn-ghost text-white capitalize text-base bg-yellow-400 hover:bg-yellow-300 btn-block rounded-full">confirm</button>
+				</div>
+			</div>
+		</div>
+		
 	</div>
 
-	<div class="h-80 bg-base-100"></div>
+	<div class="h-40"></div>
 </main>
 
 <Footer />
