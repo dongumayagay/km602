@@ -52,7 +52,7 @@
 
 
     <div class="min-h-full text-center text-sky-700 pb-36  lg:px-16 px-4 py-20">
-        <p class="text-4xl py-16">Check your <span class="font-bold">Packages</span></p>
+        <p class="text-4xl py-16">Your <span class="font-bold">Packages</span></p>
         <table class="table-auto w-full text-sm">
             <thead>
                 <tr class="bg-blue-50">
@@ -64,38 +64,38 @@
             </thead>
             <tbody>
                 <tr class="border-b border-gray-100">
-                    <td class="py-6 font-medium">Jeepney<br><span class="text-red-500 text-base">₱ 250.00</span></td>
-                    <td class="py-6 font-medium">Jeepney<br><span class="text-red-500 text-base">₱ 125.00</span></td>
+                    <td class="py-6 font-medium">Jeepney<br><span class="text-red-500">₱ 250.00</span></td>
+                    <td class="py-6 font-medium">Jeepney<br><span class="text-red-500">₱ 125.00</span></td>
                     <td class="py-6 font-medium text-gray-400">Not Applicable</td>
                     <td class="py-6 font-medium text-gray-400">Not Applicable</td>
                 </tr>
                 <tr class="border-b border-gray-100">
-                    <td class="py-6 font-medium">Tricycle<br><span class="text-red-500 text-base">₱ 100.00</span></td>
-                    <td class="py-6 font-medium">Tricycle<br><span class="text-red-500 text-base">₱ 50.00</span></td>
+                    <td class="py-6 font-medium">Tricycle<br><span class="text-red-500">₱ 100.00</span></td>
+                    <td class="py-6 font-medium">Tricycle<br><span class="text-red-500">₱ 50.00</span></td>
                     <td class="py-6 font-medium text-gray-400">Not Applicable</td>
                     <td class="py-6 font-medium text-gray-400">Not Applicable</td>
                 </tr>
                 <tr class="border-b border-gray-100">
-                    <td class="py-6 font-medium">SUV<br><span class="text-red-500 text-base">₱ 200.00</span></td>
+                    <td class="py-6 font-medium">SUV<br><span class="text-red-500">₱ 200.00</span></td>
                     <td class="py-6 font-medium text-gray-400">Not Applicable</td>
-                    <td class="py-6 font-medium">SUV<br><span class="text-red-500 text-base">₱ 100.00</span></td>
-                    <td class="py-6 font-medium">SUV<br><span class="text-red-500 text-base">₱ 100.00</span></td>
+                    <td class="py-6 font-medium">SUV<br><span class="text-red-500">₱ 100.00</span></td>
+                    <td class="py-6 font-medium">SUV<br><span class="text-red-500">₱ 100.00</span></td>
                 </tr>
                 <tr class="border-b border-gray-100">
-                    <td class="py-6 font-medium">Sedan<br><span class="text-red-500 text-base">₱ 150.00</span></td>
+                    <td class="py-6 font-medium">Sedan<br><span class="text-red-500">₱ 150.00</span></td>
                     <td class="py-6 font-medium text-gray-400">Not Applicable</td>
-                    <td class="py-6 font-medium">Sedan<br><span class="text-red-500 text-base">₱ 75.00</span></td>
-                    <td class="py-6 font-medium">Sedan<br><span class="text-red-500 text-base">₱ 75.00</span></td>
+                    <td class="py-6 font-medium">Sedan<br><span class="text-red-500">₱ 75.00</span></td>
+                    <td class="py-6 font-medium">Sedan<br><span class="text-red-500">₱ 75.00</span></td>
                 </tr>
                 <tr class="border-b border-gray-100">
-                    <td class="py-6 font-medium">Van<br><span class="text-red-500 text-base">₱ 230.00</span></td>
+                    <td class="py-6 font-medium">Van<br><span class="text-red-500">₱ 230.00</span></td>
                     <td class="py-6 font-medium text-gray-400">Not Applicable</td>
-                    <td class="py-6 font-medium">Van<br><span class="text-red-500 text-base">₱ 115.00</span></td>
-                    <td class="py-6 font-medium">Van<br><span class="text-red-500 text-base">₱ 115.00</span></td>
+                    <td class="py-6 font-medium">Van<br><span class="text-red-500">₱ 115.00</span></td>
+                    <td class="py-6 font-medium">Van<br><span class="text-red-500">₱ 115.00</span></td>
                 </tr>
                 <tr class="border-b border-gray-100">
-                    <td class="py-6 font-medium">Motorcycle<br><span class="text-red-500 text-base">₱ 60.00</span></td>
-                    <td class="py-6 font-medium">Motorcycle<br><span class="text-red-500 text-base">₱ 30.00</span></td>
+                    <td class="py-6 font-medium">Motorcycle<br><span class="text-red-500">₱ 60.00</span></td>
+                    <td class="py-6 font-medium">Motorcycle<br><span class="text-red-500">₱ 30.00</span></td>
                     <td class="py-6 font-medium text-gray-400">Not Applicable</td>
                     <td class="py-6 font-medium text-gray-400">Not Applicable</td>
                 </tr>
