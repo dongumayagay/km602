@@ -1,7 +1,3 @@
-<script>
-    import Footer from '$lib/components/Footer.svelte';
-</script>
-
 <svelte:head>
 	<title>Home | km602</title>
 </svelte:head>
@@ -260,7 +256,6 @@
 
     <div class="h-60"></div>
 
-    <Footer />
 </main>
 
 

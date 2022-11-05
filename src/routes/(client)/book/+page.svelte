@@ -1,64 +1,61 @@
 <script>
-	import { formatDate, date, time } from '$lib/utils';
+	import { formatDate, date, time, cars, motor, tric, jeep, sedan, suv, van } from '$lib/utils';
 	import { db } from '$lib/firebase';
-    import Footer from '$lib/components/Footer.svelte';
-	import { collection, addDoc } from 'firebase/firestore';
+	import { collection, addDoc, query, onSnapshot  } from 'firebase/firestore';
 
+	let arr = [];
 	let data;
 	let bookTime = 'Pick your time';
 	let car = 'Type of Vehicle';
 	let wash = 'Pick your service';
-	let Booktime = [`8:00 am`,  `9:00 am`, `10:00 am`, `11:00 am`, `1:00 pm`, `2:00 pm`, `3:00 pm`, `4:00 pm`, `5:00 pm`, `6:00 pm`];
-	let cars = [`Jeepney`, `Tricycle`, `SUV`, `Sedan`, `Van`, `Motorcycle`];
-	let motor = [
-      {wash: `Full wash`, price: 60},
-      {wash: `Pressure wash only`, price: 30},
-    ];
-    let tric = [
-      {wash: `Full wash`, price: 100},
-      {wash: `Pressure wash only`, price: 50},
-    ];
-    let jeep = [
-      {wash: `Full wash`, price: 250},
-      {wash: `Pressure wash only`, price: 125},
-    ];
-    let sedan = [
-      {wash: `Full wash`, price: 150},
-      {wash: `Inner only`, price: 75},
-      {wash: `Outer only`, price: 75}
-    ];
-    let suv = [
-      {wash: `Full wash`, price: 200},
-      {wash: `Inner only`, price: 100},
-      {wash: `Outer only`, price: 100}
-    ];
-    let van = [
-      {wash: `Full wash`, price: 230},
-      {wash: `Inner only`, price: 115},
-      {wash: `Outer only`, price: 115}
-    ];
+	let Booktime = [[`8:00 am`, false],  [`9:00 am`, false], [`10:00 am`,false], [`11:00 am`,false], [`1:00 pm`,false], [`2:00 pm`,false], [`3:00 pm`,false], [`4:00 pm`,false], [`5:00 pm`,false], [`6:00 pm`,false]];
+	let selectedDate = '';
+	let bookings = [];
+
+
+	const q = query(collection(db, 'bookings'));
+	const unsubscribe = onSnapshot(q, (querySnapshot) => {
+			querySnapshot.forEach((doc) => {
+				bookings.push({ ...doc.data(), id: doc.id });
+			});
+		});
+	// 	check selected date if same sa db
+	for(let i = 0; i < bookings.length; i++){
+		if(selectedDate == bookings[i].date){
+			console.log(bookings[i].time);
+			arr.push(bookings[i].time);
+		}
+	}
+	// 	set true if same sa time sa db
+	$:for(let i =0 ; i < arr.length; i++){
+		for(let j = 0; j < Booktime.length; j++){
+			if(arr[i] == Booktime[j][0]){
+				Booktime[j][1] = true;
+			}
+		}
+	}
 
 
 	async function submitHandler(event) {
 		const formData = new FormData(event.target);
 		data = Object.fromEntries(formData);
 		console.log(data);
-
-		const bookingsCollectionReference = collection(db, 'bookings');
-		try {
-			const docRef = await addDoc(bookingsCollectionReference, {
-				...data,
-				// finish: false
-			});
-			event.target.reset();
-			car = 'Type of Vehicle', wash = 'Pick your service', bookTime = 'Pick your time';
-			data = null;
-			console.log(docRef);
-			alert('success');
-		} catch (error) {
-			console.log(error);
-			alert(error);
-		}
+		// console.log(bookings);
+		// const bookingsCollectionReference = collection(db, 'bookings');
+		// try {
+		// 	const docRef = await addDoc(bookingsCollectionReference, {
+		// 		...data,
+		// 		// finish: false
+		// 	});
+		// 	event.target.reset();
+		// 	car = 'Type of Vehicle', wash = 'Pick your service', bookTime = 'Pick your time';
+		// 	data = null;
+		// 	console.log(docRef);
+		// 	alert('success');
+		// } catch (error) {
+		// 	console.log(error);
+		// 	alert(error);
+		// }
 	}
 </script>
 
@@ -124,7 +121,7 @@
 						<label for="#" class="label font-medium">
 							<span class="label-text">Date <span class="text-red-500 font-extrabold">*</span></span>
 						</label>
-						<input required name="date" type="date" placeholder="date" class="input input-bordered max-w-lg" />
+						<input required name="date" type="date" placeholder="date" class="input input-bordered max-w-lg" bind:value={selectedDate} />
 					</div>
 		
 					<div class="form-control">
@@ -133,8 +130,10 @@
 						</label>
 						<select required name="time" class="select w-full max-w-lg select-bordered" bind:value={bookTime}>
 							<option disabled selected>Pick your time</option>
-							{#each Booktime as value}
-							<option {value}>{value}</option>
+							{#each Booktime as value, i}
+								{#if !Booktime[i][1]}
+									<option value={Booktime[i][0]}>{Booktime[i][0]}</option>
+								{/if}
 							{/each}
 						</select>
 					</div>
@@ -183,5 +182,3 @@
 
 	<div class="h-40"></div>
 </main>
-
-<Footer />

@@ -1,7 +1,3 @@
-<script>
-    import Footer from '$lib/components/Footer.svelte';
-</script>
-
 <svelte:head>
 	<title>Services | km602</title>
 </svelte:head>
@@ -103,5 +99,4 @@
         </table>
         <center><a href="/book" class="btn btn-ghost my-16 bg-yellow-400 text-white rounded-full capitalize px-8 text-base hover:bg-yellow-300">Book now</a></center>
     </div>
-    <Footer />
 </main>
