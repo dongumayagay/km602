@@ -1,15 +1,3 @@
-<script>
-    import Footer from '$lib/components/Footer.svelte';
-    import Header from '$lib/img/header.webp';
-    import Booking from '$lib/img/booking.webp';
-    import Time from '$lib/img/save_time.webp';
-    import Train from '$lib/img/train.webp';
-    import About from '$lib/img/about.webp';
-    import Avatar1 from '$lib/img/avatar1.webp';
-    import Avatar2 from '$lib/img/avatar2.webp';
-    import Avatar3 from '$lib/img/avatar3.webp';
-</script>
-
 <svelte:head>
 	<title>Home | km602</title>
 </svelte:head>
@@ -19,7 +7,7 @@
     <!-- banner -->
     <div class="hero min-h-screen lg:px-16 px-4">
         <div class="hero-content flex-col lg:flex-row-reverse">
-            <img alt="header" src={Header} class="lg:w-1/2">
+            <img alt="header" src="/img/header.webp" class="lg:w-1/2">
             <div>
                 <h1 class="mb-5 text-5xl leading-snug text-sky-700">Brand <span class="font-bold">New Touch</span> less Car <span class="font-bold">Wash</span></h1>
                 <p class="mb-5 text-sky-700 font-medium">
@@ -37,19 +25,19 @@
         <p class="text-4xl my-16"><span class="font-bold">Why</span> km602?</p>
         <div class="lg:grid lg:grid-cols-3 lg:gap-x-16 px-8">
             <center>
-                <img alt="book" src={Booking} class="w-1/2 my-2">
+                <img alt="book" src="/img/booking.webp" class="w-1/2 my-2">
                 <p class="text-lg font-semibold block lg:hidden">Customer Convenience
                     <br><span class="font-normal text-sm">We provide booking service system as per the client convenience</span>
                 </p>
             </center>
             <center>
-                <img alt="time" src={Time} class="w-1/2 my-2">
+                <img alt="time" src="/img/save_time.webp" class="w-1/2 my-2">
                 <p class="text-lg font-semibold block lg:hidden">Saves Your Time
                     <br><span class="font-normal text-sm">We respect the time of our customer, we help you to take care of your vehicle</span>
                 </p>
             </center>
             <center>
-                <img alt="train" src={Train} class="w-1/2 my-2">
+                <img alt="train" src="/img/train.webp" class="w-1/2 my-2">
                 <p class="text-lg font-semibold block lg:hidden">Highly Trained Washers
                     <br><span class="font-normal text-sm">Our washing expert are fully trained and professional</span>
                 </p>
@@ -73,7 +61,7 @@
     <!-- about -->
     <div class="min-h-[3/4] bg-blue-50 lg:px-16 px-4">
         <div class="hero-content flex-col lg:flex-row">
-            <img alt="header" src={About} class="lg:w-1/2">
+            <img alt="header" src="/img/about.webp" class="lg:w-1/2">
             <div>
                 <h1 class="mb-5 text-4xl leading-snug text-sky-700">Get to Know <span class="font-bold">About </span>Us</h1>
                 <p class="mb-5 text-sky-700 font-medium">
@@ -240,7 +228,7 @@
                 </tr>
             </tbody>
         </table>
-        <center><a href="/book" class="btn btn-ghost my-16 bg-yellow-400 text-white rounded-full capitalize px-8 text-base hover:bg-yellow-300">learn more</a></center>
+        <center><a href="/services" class="btn btn-ghost my-16 bg-yellow-400 text-white rounded-full capitalize px-8 text-base hover:bg-yellow-300">learn more</a></center>
     </div>
 
     
@@ -250,15 +238,15 @@
         <p class="text-4xl my-16 font-bold"><span class="font-normal">Meet Our</span> Teams</p>
         <div class="lg:grid lg:grid-cols-3 lg:gap-x-16 text-lg font-semibold">
             <center>
-                <img alt="book" src={Avatar1} class="lg:w-3/4 w-1/2 my-2">
+                <img alt="book" src="/img/avatar1.webp" class="lg:w-3/4 w-1/2 my-2">
                 <p>Owner</p>
             </center>
             <center>
-                <img alt="time" src={Avatar2} class="lg:w-3/4 w-1/2 my-2">
+                <img alt="time" src="/img/avatar2.webp" class="lg:w-3/4 w-1/2 my-2">
                 <p>Worker</p>
             </center>
             <center>
-                <img alt="train" src={Avatar3} class="lg:w-3/4 w-1/2 my-2">
+                <img alt="train" src="/img/avatar3.webp" class="lg:w-3/4 w-1/2 my-2">
                 <p>Worker</p>
             </center>
         </div>
@@ -268,7 +256,6 @@
 
     <div class="h-60"></div>
 
-    <Footer />
 </main>
 
 
