@@ -5,6 +5,7 @@
 	import { collection, addDoc } from 'firebase/firestore';
 
 	let data;
+	let bookTime = 'Pick your time';
 	let car = 'Type of Vehicle';
 	let wash = 'Pick your service';
 	let Booktime = [`8:00 am`,  `9:00 am`, `10:00 am`, `11:00 am`, `1:00 pm`, `2:00 pm`, `3:00 pm`, `4:00 pm`, `5:00 pm`, `6:00 pm`];
@@ -43,19 +44,21 @@
 		data = Object.fromEntries(formData);
 		console.log(data);
 
-		// const bookingsCollectionReference = collection(db, 'bookings');
-		// try {
-		// 	const docRef = await addDoc(bookingsCollectionReference, {
-		// 		...data,
-		// 		finish: false
-		// 	});
-		// 	event.target.reset();
-		// 	console.log(docRef);
-		// 	alert('success');
-		// } catch (error) {
-		// 	console.log(error);
-		// 	alert(error);
-		// }
+		const bookingsCollectionReference = collection(db, 'bookings');
+		try {
+			const docRef = await addDoc(bookingsCollectionReference, {
+				...data,
+				// finish: false
+			});
+			event.target.reset();
+			car = 'Type of Vehicle', wash = 'Pick your service', bookTime = 'Pick your time';
+			data = null;
+			console.log(docRef);
+			alert('success');
+		} catch (error) {
+			console.log(error);
+			alert(error);
+		}
 	}
 </script>
 
@@ -128,9 +131,11 @@
 						<label for="#" class="label font-medium">
 							<span class="label-text">Time <span class="text-red-500 font-extrabold">*</span></span>
 						</label>
-						<select required name="time" class="select w-full max-w-lg select-bordered">
+						<select required name="time" class="select w-full max-w-lg select-bordered" bind:value={bookTime}>
 							<option disabled selected>Pick your time</option>
-							{#each Booktime as value}<option>{value}</option>{/each}
+							{#each Booktime as value}
+							<option {value}>{value}</option>
+							{/each}
 						</select>
 					</div>
 					<input required name="status" value="Reserved" type="text" class="input input-bordered max-w-lg hidden" />
