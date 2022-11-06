@@ -14,7 +14,7 @@
 			<li class="my-12"><a href="/services" class="active:bg-transparent hover:text-blue-500 hover:bg-transparent">About Us</a></li>
 			<li class="my-12"><a href="/services" class="active:bg-transparent  hover:bg-transparent hover:text-blue-500">Our Services</a></li>
 			<li class="my-12"><a href="/services" class="active:bg-transparent hover:text-blue-500 hover:bg-transparent">Our Teams</a></li>
-			<li class="my-12"><a href="/services" class="rounded-full bg-sky-700 px-8 py-3 text-white hover:bg-sky-600">Book now</a></li>
+			<li class="my-12"><a href="/book" class="rounded-full bg-sky-700 px-8 py-3 text-white hover:bg-sky-600">Book now</a></li>
 		  </ul></center>
 	</div>
 
@@ -24,7 +24,7 @@
 		<li class="my-6 mx-6 lg:m-0"><a href="/services" class="active:bg-transparent hover:text-blue-500 hover:bg-transparent">About Us</a></li>
 		<li class="my-6 mx-6 lg:m-0"><a href="/services" class="active:bg-transparent  hover:bg-transparent hover:text-blue-500">Our Services</a></li>
 		<li class="my-6 mx-6 lg:m-0"><a href="/services" class="active:bg-transparent hover:text-blue-500 hover:bg-transparent">Our Teams</a></li>
-		<li class="mb-8 mx-6 lg:m-0"><a href="/services" class="rounded-full bg-sky-700 px-8 py-3 text-white hover:bg-sky-600">Book now</a></li>
+		<li class="mb-8 mx-6 lg:m-0"><a href="/book" class="rounded-full bg-sky-700 px-8 py-3 text-white hover:bg-sky-600">Book now</a></li>
 	  </ul></center>
 	</div>
 
