@@ -43,39 +43,3 @@
 		</div>
 	</div>
 </main>
-<!-- <form on:submit|preventDefault={submitHandler} class="flex flex-col gap-2">
-	<input required type="email" name="email" placeholder="email" id="" />
-	<input required type="password" name="password" placeholder="password" id="" />
-	<button>SIGNIN</button>
-</form> -->
-
-<!-- <div class="bg-blue-50 hero min-h-screen">
-    <div class="card flex-shrink-0 w-full max-w-sm lg:bg-base-100 lg:shadow-2xl lg:max-w-md lg:p-8">
-        <div class="card-body">
-            <div class="text-center">
-                <h1 class="text-3xl font-bold">Login</h1>
-                <p class="py-4 tracking-wide">Welcome to Admin Access for <span class="text-yellow-400 font-semibold">km602 </span><span class="text-blue-500 font-semibold">Carwash</span></p>
-            </div>
-            <form on:submit|preventDefault={submitHandler}>
-                <div class="form-control">
-                    <label for="#" class="label">
-                        <span class="label-text">Email</span>
-                    </label>
-                    <input type="email"  placeholder="email" class="input input-bordered"/>
-                </div>
-                <div class="form-control">
-                    <label for="#" class="label">
-                        <span class="label-text">Password</span>
-                    </label>
-                    <input type="password" placeholder="password" class="input input-bordered"/>
-                    <label for="#" class="label">
-                        <a href="/" class="label-text-alt link link-hover">Forgot password?</a>
-                    </label>
-                </div>
-                <div class="form-control mt-6">
-                    <button type="submit" class="btn btn-warning">Login</button>
-                </div>
-            </form>   
-        </div>
-    </div>
-</div> -->
