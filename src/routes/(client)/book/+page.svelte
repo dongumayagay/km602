@@ -8,7 +8,7 @@
 	let bookTime = 'Pick your time';
 	let car = 'Type of Vehicle';
 	let wash = 'Pick your service';
-	let Booktime = [[`8:00 am`, false],  [`9:00 am`, false], [`10:00 am`,false], [`11:00 am`,false], [`1:00 pm`,false], [`2:00 pm`,false], [`3:00 pm`,false], [`4:00 pm`,false], [`5:00 pm`,false], [`6:00 pm`,false]];
+	let Booktime = [`8:00 am`,`9:00 am` ,`10:00 am`,`11:00 am`,`1:00 pm`,`2:00 pm`, `3:00 pm`, `4:00 pm`, `5:00 pm`, `6:00 pm`];
 	let selectedDate = '';
 	let bookings = [];
 
@@ -19,21 +19,6 @@
 				bookings.push({ ...doc.data(), id: doc.id });
 			});
 		});
-	// 	check selected date if same sa db
-	for(let i = 0; i < bookings.length; i++){
-		if(selectedDate == bookings[i].date){
-			console.log(bookings[i].time);
-			arr.push(bookings[i].time);
-		}
-	}
-	// 	set true if same sa time sa db
-	$:for(let i =0 ; i < arr.length; i++){
-		for(let j = 0; j < Booktime.length; j++){
-			if(arr[i] == Booktime[j][0]){
-				Booktime[j][1] = true;
-			}
-		}
-	}
 
 
 	async function submitHandler(event) {
@@ -130,10 +115,8 @@
 						</label>
 						<select required name="time" class="select w-full max-w-lg select-bordered" bind:value={bookTime}>
 							<option disabled selected>Pick your time</option>
-							{#each Booktime as value, i}
-								{#if !Booktime[i][1]}
-									<option value={Booktime[i][0]}>{Booktime[i][0]}</option>
-								{/if}
+							{#each Booktime as value}
+								<option value={value}>{value}</option>
 							{/each}
 						</select>
 					</div>
