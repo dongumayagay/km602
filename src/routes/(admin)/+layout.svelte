@@ -4,6 +4,7 @@
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { user } from '$lib/stores';
+	import Loading from '$lib/components/Loading.svelte';
 
 	let loading = true;
 
@@ -18,7 +19,7 @@
 </script>
 
 {#if loading}
-	loading
+	<Loading />
 {:else}
 	<slot />
 {/if}
