@@ -5,20 +5,7 @@
 	import Loading from './Loading.svelte';
 	import Sidebar from './Sidebar.svelte';
 
-	// let loading = true;
-
-	// onMount(() => {
-	// 	const unsubscribe = onAuthStateChanged(auth, async (userObj) => {
-	// 		$user = userObj;
-	// 		if (!userObj) await goto('/admin/signin');
-	// 		loading = false;
-	// 	});
-	// 	return () => unsubscribe();
-	// });
-
-	$: if ($userStore === null && browser) {
-		goto('/admin/signin');
-	}
+	$: if ($userStore === null && browser) goto('/admin/signin');
 </script>
 
 {#if $userStore === undefined}
