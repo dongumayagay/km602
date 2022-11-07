@@ -13,6 +13,7 @@
 		const formData = new FormData(event.target);
 		const booking = Object.fromEntries(formData);
 		booking.price = Number(price);
+		booking.createdAt = new Date();
 		console.log(booking);
 	}
 </script>
@@ -27,22 +28,6 @@
 		<InputService bind:vehicleType bind:price />
 		<InputDate />
 		<InputTime />
-
-		<!-- <input
-			required
-			name="status"
-			value="Reserved"
-			type="text"
-			class="input input-bordered max-w-lg hidden"
-		/> -->
-		<!-- <input required name="dateNow" type="text" class="input input-bordered max-w-lg hidden" /> -->
-		<!-- value={date} -->
-		<!-- <input required name="timeNow" type="text" class="input input-bordered max-w-lg hidden" /> -->
-		<!-- value={time} -->
-		<!-- <input required name="wash" type="text" class="input input-bordered max-w-lg hidden" /> -->
-		<!-- value={wash.wash} -->
-		<!-- <input required name="price" type="text" class="input input-bordered max-w-lg hidden" /> -->
-		<!-- value={wash.price} -->
 		<div class="pt-4">
 			<button
 				class="btn btn-ghost bg-info hover:bg-info/75 text-white px-8 capitalize rounded-full text-base"
