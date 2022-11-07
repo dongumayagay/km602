@@ -1,7 +1,8 @@
 <script>
-	import Navbar from '$lib/components/Navbar.svelte';
-	import Footer from '$lib/components/Footer.svelte';
+	import Navbar from './Navbar.svelte';
+	import Footer from './Footer.svelte';
 </script>
+
 <svelte:head>
 	<title>km602</title>
 </svelte:head>

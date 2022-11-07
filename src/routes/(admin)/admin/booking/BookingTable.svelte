@@ -11,24 +11,22 @@
 	});
 </script>
 
-<div class="overflow-x-auto">
-	<table class="table w-full">
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>Name</th>
-				<th>EMAIL</th>
-				<th>PACKAGE</th>
-				<th>DATETIME</th>
-				<th>IS FINISH?</th>
-			</tr>
-		</thead>
-		<tbody>
-			{#each bookings as booking}
-				<BookingItem {booking} />
-			{:else}
-				<h1>No carwash reservation yet</h1>
-			{/each}
-		</tbody>
-	</table>
-</div>
+<table class="table table-auto min-w-max w-full overflow-x-auto">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>EMAIL</th>
+			<th>PACKAGE</th>
+			<th>DATETIME</th>
+			<th>IS FINISH?</th>
+		</tr>
+	</thead>
+	<tbody>
+		{#each bookings as booking}
+			<BookingItem {booking} />
+		{:else}
+			<h1>No carwash reservation yet</h1>
+		{/each}
+	</tbody>
+</table>

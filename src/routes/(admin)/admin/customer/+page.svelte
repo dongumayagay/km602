@@ -1,0 +1,1 @@
+<span class="font-semibold text-2xl mb-8">Customers</span>
