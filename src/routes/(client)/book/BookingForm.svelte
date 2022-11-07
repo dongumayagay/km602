@@ -13,6 +13,7 @@
 		const formData = new FormData(event.target);
 		const booking = Object.fromEntries(formData);
 		booking.price = Number(price);
+		booking.createdAt = new Date();
 		console.log(booking);
 	}
 </script>
