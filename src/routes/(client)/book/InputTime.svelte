@@ -1,18 +1,20 @@
 <script>
-	const booking_times = [
-		`8:00 AM`,
-		`9:00 AM`,
-		`10:00 AM`,
-		`11:00 AM`,
-		`1:00 PM`,
-		`2:00 PM`,
-		`3:00 PM`,
-		`4:00 PM`,
-		`5:00 PM`,
-		`6:00 PM`
-	];
+	import { booking_times } from '$lib/constants';
+	import { collection, getDocs, query, where } from 'firebase/firestore';
+	import { db } from '$lib/firebase';
 
 	export let date;
+	let available_times = [];
+
+	const bookingCollectionReference = collection(db, 'bookings');
+	async function getBookTimesInADate(date) {
+		const q = query(bookingCollectionReference, where('date', '==', date));
+		const querySnapshot = await getDocs(q);
+		const already_booked_times = querySnapshot.docs.map((doc) => doc.data().time);
+		available_times = booking_times.filter((item) => !already_booked_times.includes(item));
+	}
+
+	$: if (!!date) getBookTimesInADate(date);
 </script>
 
 <div class="form-control">
@@ -22,7 +24,7 @@
 	<select required name="time" class="select w-full max-w-lg select-bordered">
 		<!-- bind:value={bookTime} -->
 		<option disabled selected value="">Pick your time</option>
-		{#each booking_times as value}
+		{#each available_times as value}
 			<option {value}>{value}</option>
 		{/each}
 	</select>
