@@ -22,7 +22,6 @@
 		<span class="label-text">Time <span class="text-red-500 font-extrabold">*</span></span>
 	</label>
 	<select required name="time" class="select w-full max-w-lg select-bordered">
-		<!-- bind:value={bookTime} -->
 		<option disabled selected value="">Pick your time</option>
 		{#each available_times as value}
 			<option {value}>{value}</option>
