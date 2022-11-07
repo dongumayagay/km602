@@ -1,27 +1,29 @@
 <script>
-	import { onAuthStateChanged } from 'firebase/auth';
-	import { auth } from '$lib/firebase';
-	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
-	import { user } from '$lib/stores';
+	import { browser } from '$app/environment';
+	import { userStore } from '$lib/stores';
 	import Loading from './Loading.svelte';
 	import Sidebar from './Sidebar.svelte';
 
-	let loading = true;
+	// let loading = true;
 
-	onMount(() => {
-		const unsubscribe = onAuthStateChanged(auth, async (userObj) => {
-			$user = userObj;
-			if (!userObj) await goto('/admin/signin');
-			loading = false;
-		});
-		return () => unsubscribe();
-	});
+	// onMount(() => {
+	// 	const unsubscribe = onAuthStateChanged(auth, async (userObj) => {
+	// 		$user = userObj;
+	// 		if (!userObj) await goto('/admin/signin');
+	// 		loading = false;
+	// 	});
+	// 	return () => unsubscribe();
+	// });
+
+	$: if ($userStore === null && browser) {
+		goto('/admin/signin');
+	}
 </script>
 
-{#if loading}
+{#if $userStore === undefined}
 	<Loading />
-{:else}
+{:else if $userStore !== undefined && $userStore !== null}
 	<div class="flex">
 		<Sidebar />
 		<div class="min-h-screen w-full bg-blue-50">
