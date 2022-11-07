@@ -10,6 +10,7 @@
 
 	let vehicleType = '';
 	let price = '';
+	let date = '';
 
 	async function submitHandler(event) {
 		const form = event.target;
@@ -36,9 +37,9 @@
 		<InputName />
 		<InputEmail />
 		<InputVehicle bind:vehicleType />
-		<InputService bind:vehicleType bind:price />
-		<InputDate />
-		<InputTime />
+		<InputService bind:price {vehicleType} />
+		<InputDate bind:date />
+		<InputTime {date} />
 		<div class="pt-4">
 			<button
 				class="btn btn-ghost bg-info hover:bg-info/75 text-white px-8 capitalize rounded-full text-base"

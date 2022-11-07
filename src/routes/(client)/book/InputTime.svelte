@@ -1,5 +1,5 @@
 <script>
-	let booking_times = [
+	const booking_times = [
 		`8:00 AM`,
 		`9:00 AM`,
 		`10:00 AM`,
@@ -11,6 +11,8 @@
 		`5:00 PM`,
 		`6:00 PM`
 	];
+
+	export let date;
 </script>
 
 <div class="form-control">
