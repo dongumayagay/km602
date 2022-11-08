@@ -1,6 +1,5 @@
 <script>
 	import BookingForm from './BookingForm.svelte';
-	import BookingSummary from './BookingSummary.svelte';
 </script>
 
 <svelte:head>
@@ -15,7 +14,6 @@
 		</p>
 		<div class="lg:grid lg:grid-cols-3 gap-8">
 			<BookingForm />
-			<!-- <BookingSummary /> -->
 		</div>
 	</div>
 
