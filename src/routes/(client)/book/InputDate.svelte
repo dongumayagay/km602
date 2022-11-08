@@ -1,3 +1,7 @@
+<script>
+	export let date = '';
+</script>
+
 <div class="form-control">
 	<label for="#" class="label font-medium">
 		<span class="label-text">Date <span class="text-red-500 font-extrabold">*</span></span>
@@ -13,5 +17,6 @@
 			day: '2-digit'
 		}).format(new Date(Date.now() + 3600 * 1000 * 24))}
 		class="input input-bordered max-w-lg"
+		bind:value={date}
 	/>
 </div>
