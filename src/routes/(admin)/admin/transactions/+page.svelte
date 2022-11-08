@@ -1,33 +1,51 @@
 <script>
-    let tab = 'all';
-    let pendingtab = '';
-    let ongoingtab = '';
-    let alltab = 'tab-active';
-    let show = false;
+  import { price_matrix } from '$lib/constants';
 
-    function pending(){
-    tab = 'pending';
-    if(tab === 'pending')
+  $: options = !!price_matrix[vehicleType] ? Object.keys(price_matrix[vehicleType]) : [];
+
+  let vehicleType = '';
+  let wax = true;
+
+  function setPrice(event) {
+    const service = event.target.value;
+    if(service === 'Outer only'){
+      wax = true;
+    }else{
+      wax = false
+    }
+    price = price_matrix[vehicleType][service];
+  }
+
+  let tab = 'all';
+  let pendingtab = '';
+  let ongoingtab = '';
+  let alltab = 'tab-active';
+  let show = false;
+  
+
+  function pending(){
+  tab = 'pending';
+  if(tab === 'pending')
+    alltab = '';
+    pendingtab = 'tab-active'; 
+    ongoingtab ='';
+  }
+
+  function ongoing(){
+      tab = 'ongoing';
+      if(tab === 'ongoing')
       alltab = '';
-      pendingtab = 'tab-active'; 
-      ongoingtab ='';
-    }
+      ongoingtab = 'tab-active'; 
+      pendingtab = '';
+  }
 
-    function ongoing(){
-        tab = 'ongoing';
-        if(tab === 'ongoing')
-        alltab = '';
-        ongoingtab = 'tab-active'; 
-        pendingtab = '';
-    }
-
-    function all(){
-        tab = 'all';
-        if(tab === 'all')
-        pendingtab = '';
-        alltab = 'tab-active';
-        ongoingtab = '';
-    }
+  function all(){
+      tab = 'all';
+      if(tab === 'all')
+      pendingtab = '';
+      alltab = 'tab-active';
+      ongoingtab = '';
+  }
 </script>
 
 
@@ -123,8 +141,9 @@
         <label for="#" class="label">
             <span class="label-text">Vehicle Type</span>
         </label>
-          <select required name="vehicle" class="select select-bordered mb-3">
-            <option disabled selected>Pick your vehicle</option>
+          <select required name="vehicle" class="select select-bordered mb-3" bind:value={vehicleType}>
+            <option disabled selected value="">Pick your vehicle</option>
+            {#each Object.keys(price_matrix) as value}<option>{value}</option>{/each}
           </select>
         
       </div>
@@ -133,13 +152,14 @@
             <span class="label-text">Type of Wash</span>
         </label>
 
-          <select class="select select-bordered mb-3">
-            <option disabled selected>Pick your wash type</option>
-          </select>  
-      </div>
-      <div class="form-control">
-        <label class="label cursor-pointer">
-          <span class="label-text">Own wax</span> 
+        <select on:change={setPrice} required class="select select-bordered mb-3">
+          <option disabled selected value="">Pick your service</option>
+          {#each options as value}
+            <option>{value}</option>
+          {/each}
+        </select>
+        <label class="flex cursor-pointer {wax?'block' : 'hidden'}">
+          <span class="label-text text-red-500 font-bold mr-4">Own wax</span> 
           <input name="wax" type="checkbox" class="checkbox"/>
         </label>
       </div>
