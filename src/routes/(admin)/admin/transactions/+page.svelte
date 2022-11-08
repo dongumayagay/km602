@@ -1,1 +1,170 @@
-<span class="font-semibold text-2xl mb-8">Transactions</span>
+<script>
+    let tab = 'all';
+    let pendingtab = '';
+    let ongoingtab = '';
+    let alltab = 'tab-active';
+    let show = false;
+
+    function pending(){
+    tab = 'pending';
+    if(tab === 'pending')
+      alltab = '';
+      pendingtab = 'tab-active'; 
+      ongoingtab ='';
+    }
+
+    function ongoing(){
+        tab = 'ongoing';
+        if(tab === 'ongoing')
+        alltab = '';
+        ongoingtab = 'tab-active'; 
+        pendingtab = '';
+    }
+
+    function all(){
+        tab = 'all';
+        if(tab === 'all')
+        pendingtab = '';
+        alltab = 'tab-active';
+        ongoingtab = '';
+    }
+</script>
+
+
+<div>
+    
+</div>
+<div class="flex justify-between">
+    <span class="font-semibold text-2xl mb-8">Transactions</span>
+    <!-- open modal -->
+    <button 
+        on:click={()=>show = true}
+        class="btn gap-2 w-32 btn-outline rounded-full justify-items-end">New
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+        </svg>
+    </button>
+</div>
+
+<div class="tab">
+    <button  on:click={all}
+    class="text-base font-semibold tab tab-bordered w-2/6 {alltab}">Today's Transactions</button>
+    <button on:click={pending}
+    class="text-base font-semibold tab tab-bordered w-2/6 {pendingtab}">Pending</button> 
+    <button  on:click={ongoing}
+    class="text-base font-semibold tab tab-bordered w-2/6 {ongoingtab}">Ongoing</button>
+</div>
+
+
+
+<table class="min-w-max w-full table-auto shadow-lg my-6">
+    <thead class="">
+        <tr class="text-gray-700 uppercase text-xs leading-normal" style="background-color: #f2f2f2;">
+            <th class="rounded-tl-lg"></th>
+            <th class="py-4 px-6 text-left">Transact ID</th>
+            <th class="py-4 px-6 text-left">Customer</th>
+            <th class="py-4 px-6 text-center">Date & Time</th>
+            <th class="rounded-tr-lg py-3 px-6 text-left">Amount</th>
+            <th class="py-4 px-6 text-center">Status</th>
+            <th class="rounded-tr-lg py-3 px-6 text-left"></th>
+        </tr>
+    </thead>
+    <tbody class="text-base">
+          <tr class="border-b border-gray-200 bg-base-100 hover:bg-gray-200">
+              <td class="py-4 px-6 text-left font-bold text-sm">1</td>
+              <td class="py-4 px-6 text-left text-sm">test id</td>
+              <td class="py- px-6 text-left text-sm">
+                customer
+              </td>
+              <td class="py-4 px-6 text-center text-sm">date and time</td> 
+              <td class="py-4 px-6 text-left text-sm">₱0.00</td>
+              <td class="py-4 px-6 text-center text-sm">
+                <span class="bg-orange-100 text-orange-600 py-1 px-3 rounded-full text-xs font-bold">status</span>
+              </td>
+              <td class="px-4 py-3">
+                <div  class="flex items-center space-x-4 text-sm">
+                  <div class="dropdown dropdown-end">
+                    <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+                    <label for='' tabindex="0" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 rounded-lg text-gray-400 focus:outline-none focus:shadow-outline-gray" aria-label="Delete">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19 19" fill="currentColor" class="w-5 h-5">
+                        <path d="M10.5 6a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zm0 6a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zm0 6a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" clip-rule="evenodd" />
+                      </svg>
+                    </label>
+                    <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+                    <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                      <li><button>View Transaction</button></li>
+                      <li><button>Set status</button></li>
+                      <li><button>Delete</button></li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+          </tr>
+
+    </tbody>
+  </table>
+
+
+
+<!-- new transaction modal -->
+<input type="checkbox" class="modal-toggle" bind:checked={show}/>
+{#if show}
+<div class="modal">
+  <div class="modal-box gap-4 w-11/12 max-w-xl">
+    <h3 class="font-bold text-lg pb-4 col-span-2">New Transaction</h3>
+
+      <div class="form-control">
+        <label for="#" class="label">
+            <span class="label-text">Customer's Name</span>
+        </label>
+        <input type="text" name="customer" placeholder="customer" class="input input-bordered"/>
+      </div>
+      <div class="form-control">
+        <label for="#" class="label">
+            <span class="label-text">Vehicle Type</span>
+        </label>
+          <select required name="vehicle" class="select select-bordered mb-3">
+            <option disabled selected>Pick your vehicle</option>
+          </select>
+        
+      </div>
+      <div class="form-control">
+        <label for="#" class="label">
+            <span class="label-text">Type of Wash</span>
+        </label>
+
+          <select class="select select-bordered mb-3">
+            <option disabled selected>Pick your wash type</option>
+          </select>  
+      </div>
+      <div class="form-control">
+        <label class="label cursor-pointer">
+          <span class="label-text">Own wax</span> 
+          <input name="wax" type="checkbox" class="checkbox"/>
+        </label>
+      </div>
+        <div class="form-control">
+          <label for="#" class="label">
+              <span class="label-text">Transaction Status</span>
+          </label>
+          <select name="status" class="select select-bordered">
+            <option disabled selected>Pick status</option>
+            <option>Pending</option>
+            <option>Ongoing</option>
+          </select>
+        </div>
+
+      <div class="modal-action col-span-2">
+        <button 
+        on:click={()=>show=false}
+        class="btn btn-ghost rounded-full">cancel</button>
+
+        <button 
+        class="btn btn-info rounded-full text-white">Done</button>
+      </div>
+
+  </div>
+
+
+</div>
+{/if}

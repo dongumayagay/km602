@@ -11,7 +11,7 @@
 {#if $userStore === undefined}
 	<Loading />
 {:else if $userStore !== undefined && $userStore !== null}
-	<div class="flex">
+	<div class="flex min-h-screen">
 		<Sidebar />
 		<div class="min-h-screen w-full bg-blue-50">
 			<div class="w-full navbar bg-base-100">
@@ -35,7 +35,7 @@
 					<span class="text-yellow-400 pr-2">km602</span>Carwash
 				</div>
 			</div>
-			<div class="card-body overflow-auto">
+			<div class="card-body">
 				<slot />
 			</div>
 		</div>
