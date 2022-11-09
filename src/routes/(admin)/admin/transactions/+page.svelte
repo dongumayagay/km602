@@ -4,7 +4,9 @@
   $: options = !!price_matrix[vehicleType] ? Object.keys(price_matrix[vehicleType]) : [];
 
   let vehicleType = '';
-  let wax = true;
+  let wax = false;
+  let show = false;
+  let payModal = false;
 
   function setPrice(event) {
     const service = event.target.value;
@@ -15,62 +17,20 @@
     }
     price = price_matrix[vehicleType][service];
   }
-
-  let tab = 'all';
-  let pendingtab = '';
-  let ongoingtab = '';
-  let alltab = 'tab-active';
-  let show = false;
-  
-
-  function pending(){
-  tab = 'pending';
-  if(tab === 'pending')
-    alltab = '';
-    pendingtab = 'tab-active'; 
-    ongoingtab ='';
-  }
-
-  function ongoing(){
-      tab = 'ongoing';
-      if(tab === 'ongoing')
-      alltab = '';
-      ongoingtab = 'tab-active'; 
-      pendingtab = '';
-  }
-
-  function all(){
-      tab = 'all';
-      if(tab === 'all')
-      pendingtab = '';
-      alltab = 'tab-active';
-      ongoingtab = '';
-  }
 </script>
 
 
-<div>
-    
-</div>
 <div class="flex justify-between">
-    <span class="font-semibold text-2xl mb-8">Transactions</span>
+  <span class="font-semibold text-2xl mb-8">Transactions</span>
     <!-- open modal -->
-    <button 
-        on:click={()=>show = true}
-        class="btn gap-2 w-32 btn-outline rounded-full justify-items-end">New
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-        </svg>
-    </button>
-</div>
+  <button 
+    on:click={()=>show = true}
+    class="btn gap-2 w-32 btn-outline rounded-full">New
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+    </svg>
+  </button>
 
-<div class="tab">
-    <button  on:click={all}
-    class="text-base font-semibold tab tab-bordered w-2/6 {alltab}">Today's Transactions</button>
-    <button on:click={pending}
-    class="text-base font-semibold tab tab-bordered w-2/6 {pendingtab}">Pending</button> 
-    <button  on:click={ongoing}
-    class="text-base font-semibold tab tab-bordered w-2/6 {ongoingtab}">Ongoing</button>
 </div>
 
 
@@ -110,9 +70,7 @@
                     </label>
                     <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
                     <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-                      <li><button>View Transaction</button></li>
-                      <li><button>Set status</button></li>
-                      <li><button>Delete</button></li>
+                      <li><button on:click={()=>payModal=true}>Process Payment</button></li>
                     </ul>
                   </div>
                 </div>
@@ -163,16 +121,6 @@
           <input name="wax" type="checkbox" class="checkbox"/>
         </label>
       </div>
-        <div class="form-control">
-          <label for="#" class="label">
-              <span class="label-text">Transaction Status</span>
-          </label>
-          <select name="status" class="select select-bordered">
-            <option disabled selected>Pick status</option>
-            <option>Pending</option>
-            <option>Ongoing</option>
-          </select>
-        </div>
 
       <div class="modal-action col-span-2">
         <button 
@@ -186,5 +134,39 @@
   </div>
 
 
+</div>
+{/if}
+
+<input type="checkbox" class="modal-toggle" bind:checked={payModal}/>
+{#if payModal}
+<div class="modal">
+  <div class="modal-box ">
+    <h3 class="font-bold text-lg">Transaction Summary</h3>
+    <hr class="my-2" />
+    <div class="grid grid-cols-2 my-8">
+      <div class="font-semibold">
+          <p class="my-2">Transaction ID:</p>
+          <p class="my-2">Customer Name:</p>
+          <p class="my-2">Vehicle Type:</p>
+          <p class="my-2">Service Type:</p>
+          <p class="my-2">Total Amount:</p>
+          <p class="mt-16 mb-2">Amount:</p>
+          <p class="my-2">Change:</p>
+      </div>
+      <div>
+          <p class="my-2">ID</p>
+          <p class="my-2">Name</p>
+          <p class="my-2">Vehicle</p>
+          <p class="my-2">Service</p>
+          <p class="my-2">PHP</p>
+          <input type="text" placeholder="Type amount here" class="input input-bordered input-sm w-36 mt-12 mb-2" />
+          <input type="text" disabled value="₱ 0.00" class="input input-bordered input-sm w-36 " />
+      </div>
+  </div>
+    <div class="modal-action">
+      <button on:click={()=>payModal=false} class="btn btn-ghost rounded-full">cancel</button>
+      <button class="btn btn-ghost bg-yellow-400 text-white rounded-full hover:bg-yellow-300 px-8">print</button>
+    </div>
+  </div>
 </div>
 {/if}
