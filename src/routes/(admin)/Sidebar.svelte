@@ -3,7 +3,7 @@
 	import { auth } from '$lib/firebase';
 </script>
 
-<div class="flex-none w-64 bg-base-100 min-h-screen font-semibold">
+<div class="flex-none w-1/5 bg-base-100 min-h-screen font-semibold">
 	<ul class="menu px-4 py-1">
 		<div class="dropdown py-2 px-3 flex">
 			<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
