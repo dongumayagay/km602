@@ -8,7 +8,7 @@
 		required
 		name="name"
 		type="text"
-		placeholder="your full name"
+		placeholder="full name"
 		class="input input-bordered max-w-lg"
 	/>
 </div>
