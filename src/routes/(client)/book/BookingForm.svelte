@@ -23,6 +23,7 @@
 			await addDoc(collection(db, 'bookings'), booking);
 			form.reset();
 			alert('booked successfully');
+			location = location;
 		} catch (error) {
 			console.log(error);
 			alert(error);
