@@ -1,5 +1,56 @@
 <script>
-    let show = false;
+  import { db } from '$lib/firebase.js';
+  import { collection, query, onSnapshot, addDoc, deleteDoc, updateDoc, doc } from 'firebase/firestore';
+
+  let show = false;
+  let update = false;
+  let listOfEmp = [];
+
+  const employeeCollection = collection(db, 'employee');
+
+  const q = query(employeeCollection);
+  const unsubscribe = onSnapshot(q, (querySnapshot) => {
+    listOfEmp = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  });
+
+
+  async function submitHandler(event) {
+		const formData = new FormData(event.target);
+		const employee = Object.fromEntries(formData);
+    employee.pay = 0;
+    employee.tip = 0;
+    employee.total = 0;
+    employee.status = 'unpaid';
+    show=false;
+    try {
+			await addDoc(collection(db, 'employee'), employee);
+		} catch (error) {
+			console.log(error);
+			alert(error);
+		}
+		console.log(employee);
+	}
+
+  async function deleteEmp(id) {
+    await deleteDoc(doc(db, 'employee', id));
+  }
+
+  let rename = '';
+  let empID = '';
+  async function updateEmp(id, name){
+    rename = name;
+    empID = id;
+    update=false;
+    await updateDoc(doc(db, 'employee', id),{
+    name: rename
+    });
+  }
+
+  function updateShow(id, name){
+    update =true;
+    empID = id;
+    rename = name;
+  }
 </script>
 
 <div class="flex justify-between">
@@ -32,15 +83,15 @@
         </tr>
     </thead>
     <tbody class="text-base">
-  
+      {#each listOfEmp as emp, i}
         <tr class="border-b border-gray-200 bg-base-100 hover:bg-gray-200">
-            <td class="py-4 px-6 text-left font-bold text-sm">1</td>
-            <td class="py-4 px-6 text-left text-sm"><span>emp name</span></td>
-            <td class="py- px-6 text-left text-sm">₱ 0.00</td>
-            <td class="py-4 px-6 text-center text-sm">₱ 0.00</td>
-            <td class="py-4 px-6 text-center text-sm">₱ 0.00</td>
+            <td class="py-4 px-6 text-left font-bold text-sm">{i+1}</td>
+            <td class="py-4 px-6 text-left text-sm"><span>{emp.name}</span></td>
+            <td class="py- px-6 text-left text-sm">₱ {parseFloat(emp.pay).toFixed(2)}</td>
+            <td class="py-4 px-6 text-center text-sm">₱ {parseFloat(emp.tip).toFixed(2)}</td>
+            <td class="py-4 px-6 text-center text-sm">₱ {parseFloat(emp.total).toFixed(2)}</td>
             <td class="py-4 px-6 text-center text-sm">
-              <span class="py-1 px-3 rounded-full text-xs font-bold bg-red-100 text-red-700">status</span>
+              <span class="py-1 px-3 rounded-full text-xs font-bold bg-red-100 text-red-700">{emp.status}</span>
             </td>
             <td class=" py-3">
               <div  class="flex items-center space-x-2 text-sm">
@@ -54,13 +105,14 @@
                   <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
                   <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
                     <li><button>Paid</button></li>
-                    <li><button>Rename</button></li>
-                    <li><button>Delete</button></li>
+                    <li><button on:click={updateShow(emp.id, emp.name)}>Rename</button></li>
+                    <li><button on:click={deleteEmp(emp.id)}>Delete</button></li>
                   </ul>
                 </div>
               </div>
             </td>
         </tr>
+      {/each}
     </tbody>
 </table>
 
@@ -77,21 +129,40 @@
     <div class="card w-1/3 bg-base-100 shadow-xl">
       <div class="card-body">
         <h2 class="card-title">Add New Employee</h2>
-
+        <form on:submit|preventDefault={submitHandler}>
           <div class="form-control py-4">
               <label for="#" class="label">
                   <span class="label-text">Full Name</span>
               </label>
-              <input type="text"  placeholder="name" class="input input-bordered"/>
+              <input type="text" name="name" placeholder="name" class="input input-bordered"/>
           </div>
-
           <div class="card-actions justify-end">
             <button on:click={()=>show=false} class="btn btn-ghost rounded-full w-24">cancel</button>
             <button class="btn btn-info text-white rounded-full w-24">save</button>
           </div>
-
+        </form>
       </div>
     </div>
-  
   </div>
+{/if}
+
+
+{#if update}
+<div class="fixed inset-0 bg-black/50 grid place-items-center">
+  <div class="card w-1/3 bg-base-100 shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title">Rename Employee</h2>
+        <div class="form-control py-4">
+            <label for="#" class="label">
+                <span class="label-text">Full Name</span>
+            </label>
+            <input type="text" name="name" placeholder="name" class="input input-bordered"bind:value={rename}/>
+        </div>
+        <div class="card-actions justify-end">
+          <button on:click={()=>update=false} class="btn btn-ghost rounded-full w-24">cancel</button>
+          <button on:click={updateEmp(empID, rename)} class="btn btn-info text-white rounded-full w-24">update</button>
+        </div>
+    </div>
+  </div>
+</div>
 {/if}
