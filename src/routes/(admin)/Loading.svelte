@@ -1,6 +1,5 @@
-<div class="min-h-screen hero bg-blue-100">
+<div class="min-h-screen hero bg-blue-50">
     <div>
-        <progress class="progress progress-warning w-56 m-0"></progress>
-        <p class="text-center font-semibold">Loading...</p>
+        <p class="text-center text-2xl font-semibold text-blue-500"><span class="text-yellow-400 pr-2">km602</span>Carwash</p>
     </div>
 </div>

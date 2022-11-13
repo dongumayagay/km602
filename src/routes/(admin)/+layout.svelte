@@ -11,9 +11,9 @@
 {#if $userStore === undefined}
 	<Loading />
 {:else if $userStore !== undefined && $userStore !== null}
-	<div class="flex">
+	<div class="flex min-h-screen">
 		<Sidebar />
-		<div class="min-h-screen w-full bg-blue-50">
+		<div class="min-h-screen w-4/5 bg-blue-50">
 			<div class="w-full navbar bg-base-100">
 				<div class="flex-none lg:hidden">
 					<div class="btn btn-square btn-ghost drawer-button lg:hidden">

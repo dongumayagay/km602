@@ -16,7 +16,7 @@
 		<span class="label-text">Type of Service<span class="text-red-500 font-extrabold">*</span></span
 		>
 	</label>
-	<select on:change={setPrice} required class="select w-full max-w-lg select-bordered">
+	<select on:change={setPrice} name="what" required class="select w-full max-w-lg select-bordered">
 		<option disabled selected value="">Pick your service</option>
 		{#each options as value}
 			<option>{value}</option>
