@@ -1,6 +1,6 @@
 <script>
     import { db } from '$lib/firebase';
-	import { doc, updateDoc} from 'firebase/firestore';
+	import { doc, updateDoc, where, query, collection, getDocs } from 'firebase/firestore';
 
     export let transaction;
 
@@ -8,18 +8,31 @@
     let change = 0;
     let payModal;
     let view = {};
-    async function payment(id, name, vehicle, what, price){
+    async function payment(id, name, vehicle, what, price, workers){
         payModal = true;
-		view = {id: id, name:name, vehicle:vehicle, what:what, price:price};
-        console.log(view);
-  }
+		view = {id: id, name:name, vehicle:vehicle, what:what, price:price, workers:workers};
+        console.log(view.workers.length);
+    }
 
     async function print(id){
+        let selected_workers = [];
+        let sumOfpay = 0;
+        let divisionOfPay = Number(parseFloat(view.price/view.workers.length).toFixed(2));
+        const q = query(collection(db, 'employee'), where('name', 'in', view.workers));
+        const querySnapshot = await getDocs(q);
+        selected_workers = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
         try {
+            payModal = false;
             await updateDoc(doc(db, 'transactions', id),{
             status: 'paid'
-        });
-            payModal = false;
+            });
+            for(let i = 0; i < selected_workers.length; i++){
+                console.log(selected_workers[i].id);
+                sumOfpay = divisionOfPay+selected_workers[i].pay
+                await updateDoc(doc(db, 'employee', selected_workers[i].id),{
+                    pay: sumOfpay
+                });
+            }
             amount='';
             change=0;
         } catch (error) {
@@ -51,7 +64,7 @@
         <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
         <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
         <li><button
-                on:click={payment(transaction.id, transaction.name, transaction.vehicle, transaction.what, transaction.price)}
+                on:click={payment(transaction.id, transaction.name, transaction.vehicle, transaction.what, transaction.price, transaction.workers)}
                 >Process Payment</button></li>
         </ul>
     </div>

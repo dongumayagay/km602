@@ -18,16 +18,16 @@
       transaction.price = Number(price);
       transaction.createdAt = Intl.DateTimeFormat('en-PH', { dateStyle: 'full', timeStyle: 'short' }).format();
       transaction.status = 'unpaid';
-      transaction.workers = selected.join(", ");
+      transaction.workers = selected;
       console.log(transaction);
       show=false;
 
-      // try {
-      //     await addDoc(collection(db, 'transactions'), transaction);
-      // } catch (error) {
-      //     console.log(error);
-      //     alert(error);
-      // }
+      try {
+          await addDoc(collection(db, 'transactions'), transaction);
+      } catch (error) {
+          console.log(error);
+          alert(error);
+      }
 	}
 </script>
 
