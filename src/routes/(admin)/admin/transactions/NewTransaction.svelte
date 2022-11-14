@@ -2,27 +2,32 @@
     import InputName from '../../../(client)/book/InputName.svelte';
     import InputService from '../../../(client)/book/InputService.svelte';
     import InputVehicle from '../../../(client)/book/InputVehicle.svelte';
+    import InputWorkers from './InputWorkers.svelte';
     import { db } from '$lib/firebase';
     import { addDoc, collection } from 'firebase/firestore';
 
     export let show=false;
     let vehicleType = '';
-	let price = '';
+	  let price = '';
+    let selected;
+
 
     async function submitHandler(event) {
 		const formData = new FormData(event.target);
 		const transaction = Object.fromEntries(formData);
-        transaction.price = Number(price);
-        transaction.createdAt = Intl.DateTimeFormat('en-PH', { dateStyle: 'full', timeStyle: 'short' }).format();
-        transaction.status = 'unpaid';
-        console.log(transaction);
-        show=false;
-        try {
-            await addDoc(collection(db, 'transactions'), transaction);
-        } catch (error) {
-            console.log(error);
-            alert(error);
-        }
+      transaction.price = Number(price);
+      transaction.createdAt = Intl.DateTimeFormat('en-PH', { dateStyle: 'full', timeStyle: 'short' }).format();
+      transaction.status = 'unpaid';
+      transaction.workers = selected.join(", ");
+      console.log(transaction);
+      show=false;
+
+      // try {
+      //     await addDoc(collection(db, 'transactions'), transaction);
+      // } catch (error) {
+      //     console.log(error);
+      //     alert(error);
+      // }
 	}
 </script>
 
@@ -35,6 +40,8 @@
           <InputName />
           <InputVehicle bind:vehicleType/>
           <InputService bind:price {vehicleType}/>
+          <InputWorkers bind:selected/>
+
         <div class="modal-action col-span-2">
           <button 
           on:click={()=>show=false}
