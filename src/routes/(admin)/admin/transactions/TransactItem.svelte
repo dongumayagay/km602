@@ -6,6 +6,7 @@
 
     let amount;
     let change = 0;
+    let tip;
     let payModal;
     let view = {};
     async function payment(id, name, vehicle, what, price, workers){
@@ -16,8 +17,10 @@
 
     async function print(id){
         let selected_workers = [];
+        let sumOfTip = 0;
         let sumOfpay = 0;
-        let divisionOfPay = Number(parseFloat(view.price/view.workers.length).toFixed(2));
+        let divisionOfPay = Number(parseFloat((view.price/2)/view.workers.length).toFixed(2));
+        let divisionOfTip = Number(parseFloat(tip/view.workers.length).toFixed(2));
         const q = query(collection(db, 'employee'), where('name', 'in', view.workers));
         const querySnapshot = await getDocs(q);
         selected_workers = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
@@ -29,8 +32,12 @@
             for(let i = 0; i < selected_workers.length; i++){
                 console.log(selected_workers[i].id);
                 sumOfpay = divisionOfPay+selected_workers[i].pay
+                sumOfTip = divisionOfTip+selected_workers[i].tip
+                let totalPay = sumOfpay+sumOfTip;
                 await updateDoc(doc(db, 'employee', selected_workers[i].id),{
-                    pay: sumOfpay
+                    pay: sumOfpay,
+                    tip: sumOfTip,
+                    total: totalPay
                 });
             }
             amount='';
@@ -88,6 +95,7 @@
           <p class="my-2">Service Type:</p>
           <p class="my-2">Total Amount:</p>
           <p class="mt-16 mb-2">Amount:</p>
+          <p class="my-2">Tip:</p>
           <p class="my-2">Change:</p>
       </div>
       <div>
@@ -96,7 +104,8 @@
           <p class="my-2">{view.vehicle}</p>
           <p class="my-2">{view.what}</p>
           <p class="my-2">{view.price}</p>
-          <input type="text" placeholder="Type amount here" class="input input-bordered input-sm w-36 mt-12 mb-2" on:change={()=>change= amount-view.price} bind:value={amount}/>
+          <input type="text" placeholder="Enter amount here" class="input input-bordered input-sm w-36 mt-12 mb-1" on:change={()=>change= amount-view.price} bind:value={amount}/>
+          <input type="text" placeholder="Enter tip here" class="input input-bordered input-sm w-36 mb-1" on:change={()=>change= (amount-view.price)-tip} bind:value={tip}/>
           <input type="text" disabled value="₱ {change}" class="input input-bordered input-sm w-36 " />
       </div>
   </div>
