@@ -34,6 +34,10 @@
                 sumOfpay = divisionOfPay+selected_workers[i].pay
                 sumOfTip = divisionOfTip+selected_workers[i].tip
                 let totalPay = sumOfpay+sumOfTip;
+                if(totalPay > 0)
+                await updateDoc(doc(db, 'employee', selected_workers[i].id),{
+                status: 'unpaid'
+                });
                 await updateDoc(doc(db, 'employee', selected_workers[i].id),{
                     pay: sumOfpay,
                     tip: sumOfTip,
