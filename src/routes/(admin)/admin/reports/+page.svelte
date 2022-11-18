@@ -1,4 +1,5 @@
 <script>
+    import Chart from './Chart.svelte';
     let active_transact_history = true;
     let active_profit_loss = false;
 
@@ -19,7 +20,7 @@
     <button on:click={btn_transact_history}
     class="text-base font-semibold tab tab-bordered p-0 {active_transact_history ? 'tab-active' : ''} w-1/2">Transaction History</button>
     <button on:click={btn_profit_loss}
-    class="text-base font-semibold tab tab-bordered p-0 {active_profit_loss ? 'tab-active' : ''} w-1/2">Profit and Loss</button> 
+    class="text-base font-semibold tab tab-bordered p-0 {active_profit_loss ? 'tab-active' : ''} w-1/2">Profit Report</button> 
 </div>
 
 {#if active_transact_history}
@@ -65,5 +66,5 @@
     </tbody>
 </table>
 {:else}
-    profit and loss
+<Chart />
 {/if}
