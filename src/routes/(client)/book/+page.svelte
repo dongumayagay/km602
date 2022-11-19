@@ -12,7 +12,7 @@
 			<span class="font-bold">Booking </span> Carwash
 			<span class="font-bold"> Reservation </span>Form
 		</p>
-		<div class="lg:grid lg:grid-cols-3 gap-8">
+		<div class="">
 			<BookingForm />
 		</div>
 	</div>

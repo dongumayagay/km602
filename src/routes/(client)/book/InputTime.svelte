@@ -21,7 +21,7 @@
 	<label for="#" class="label font-medium">
 		<span class="label-text">Time <span class="text-red-500 font-extrabold">*</span></span>
 	</label>
-	<select required name="time" class="select w-full max-w-lg select-bordered">
+	<select required name="time" class="select w-full max-w-md select-bordered">
 		<option disabled selected value="">Pick your time</option>
 		{#each available_times as value}
 			<option {value}>{value}</option>

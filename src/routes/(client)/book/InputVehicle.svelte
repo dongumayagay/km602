@@ -10,7 +10,7 @@
 	<select
 		required
 		name="vehicle"
-		class="select w-full max-w-lg select-bordered"
+		class="select w-full max-w-md select-bordered"
 		bind:value={vehicleType}
 	>
 		<option disabled selected value="">Type of Vehicle</option>

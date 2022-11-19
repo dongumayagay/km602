@@ -46,8 +46,8 @@
 				class="btn btn-ghost bg-info hover:bg-info/75 text-white px-8 capitalize rounded-full text-base"
 				>Proceed
 				{#if price}
-					<span
-						>{new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP' }).format(
+					<span class="ml-2"
+						>- {new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP' }).format(
 							price
 						)}</span
 					>

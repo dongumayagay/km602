@@ -9,6 +9,6 @@
 		name="email"
 		type="email"
 		placeholder="email"
-		class="input input-bordered max-w-lg"
+		class="input input-bordered max-w-md"
 	/>
 </div>
