@@ -8,11 +8,11 @@
 
 <main class="bg-blue-50">
 	<div class="min-h-screen lg:px-16 px-4 text-sky-700">
-		<p class="text-2xl py-16">
+		<p class="text-2xl py-16 ml-52">
 			<span class="font-bold">Booking </span> Carwash
-			<span class="font-bold"> Reservation </span>Form
+			<span class="font-bold"> Transaction </span>
 		</p>
-		<div class="">
+		<div class="lg:grid lg:grid-cols-6">
 			<BookingForm />
 		</div>
 	</div>

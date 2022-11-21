@@ -18,6 +18,7 @@
 		const booking = Object.fromEntries(formData);
 		booking.price = Number(price);
 		booking.createdAt = new Date();
+		booking.finish = false;
 
 		try {
 			await addDoc(collection(db, 'bookings'), booking);
@@ -31,7 +32,7 @@
 	}
 </script>
 
-<div class="col-span-2 bg-white rounded-lg p-8 drop-shadow-xl">
+<div class="lg:col-start-2 lg:col-span-4 bg-white rounded-lg p-8 drop-shadow-xl">
 	<p class="font-semibold text-black">Fill out your details</p>
 	<hr class="my-2" />
 	<form on:submit|preventDefault={submitHandler} class="lg:grid lg:grid-cols-2 gap-4 py-4">
