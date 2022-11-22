@@ -16,7 +16,7 @@
 			month: '2-digit',
 			day: '2-digit'
 		}).format(new Date(Date.now() + 3600 * 1000 * 24))}
-		class="input input-bordered max-w-lg"
+		class="input input-bordered max-w-md"
 		bind:value={date}
 	/>
 </div>

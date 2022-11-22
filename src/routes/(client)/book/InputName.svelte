@@ -9,6 +9,6 @@
 		name="name"
 		type="text"
 		placeholder="full name"
-		class="input input-bordered max-w-lg"
+		class="input input-bordered max-w-md"
 	/>
 </div>

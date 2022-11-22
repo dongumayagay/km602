@@ -1,14 +1,18 @@
 <script>
     import { db } from '$lib/firebase';
-	import { addDoc, collection, query, onSnapshot, doc, updateDoc} from 'firebase/firestore';
+	import { collection, query, onSnapshot } from 'firebase/firestore';
+	import { onMount } from 'svelte';
     import TransactItem from './TransactItem.svelte';
     
     let transactions = [];
 
-    const q = query(collection(db, 'transactions'));
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      transactions = querySnapshot.docs.map((doc) => ({id: doc.id, ...doc.data() }));
-    });
+    onMount(() => {
+        const unsubscribe = onSnapshot(query(collection(db, 'transactions')), (querySnapshot) => {
+        transactions = querySnapshot.docs.map((doc) => ({id: doc.id, ...doc.data() }));
+        });
+        return () => unsubscribe();
+    })
+    
 
 </script>
 
@@ -33,4 +37,4 @@
         </tr>
         {/each}
     </tbody>
-  </table>
+</table>
