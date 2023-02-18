@@ -5,6 +5,7 @@
 
 	export let date;
 	let available_times = [];
+	export let time;
 
 	const bookingCollectionReference = collection(db, 'bookings');
 	async function getBookTimesInADate(date) {
@@ -21,7 +22,7 @@
 	<label for="#" class="label font-medium">
 		<span class="label-text">Time <span class="text-red-500 font-extrabold">*</span></span>
 	</label>
-	<select required name="time" class="select w-full max-w-md select-bordered">
+	<select bind:value={time} required name="time" class="select w-full max-w-md select-bordered">
 		<option disabled selected value="">Pick your time</option>
 		{#each available_times as value}
 			<option {value}>{value}</option>

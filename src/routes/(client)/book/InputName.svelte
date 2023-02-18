@@ -1,3 +1,7 @@
+<script>
+	export let name;
+</script>
+
 <div class="form-control">
 	<label for="#" class="label">
 		<span class="label-text font-medium"
@@ -5,6 +9,7 @@
 		>
 	</label>
 	<input
+		bind:value={name}
 		required
 		name="name"
 		type="text"

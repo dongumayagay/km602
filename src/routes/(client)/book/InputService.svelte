@@ -2,6 +2,7 @@
 	import { price_matrix } from '$lib/constants';
 	export let vehicleType;
 	export let price;
+	export let what;
 
 	$: options = !!price_matrix[vehicleType] ? Object.keys(price_matrix[vehicleType]) : [];
 
@@ -16,7 +17,7 @@
 		<span class="label-text">Type of Service<span class="text-red-500 font-extrabold">*</span></span
 		>
 	</label>
-	<select on:change={setPrice} name="what" required class="select w-full max-w-md select-bordered">
+	<select on:change={setPrice} bind:value={what} name="what" required class="select w-full max-w-md select-bordered">
 		<option disabled selected value="">Pick your service</option>
 		{#each options as value}
 			<option>{value}</option>

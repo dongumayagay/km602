@@ -1,12 +1,12 @@
 <script>
     import { db } from '$lib/firebase';
-	import { doc, updateDoc, where, query, collection, getDocs } from 'firebase/firestore';
+	import { doc, updateDoc, where, query, collection, getDocs, addDoc } from 'firebase/firestore';
 
     export let transaction;
 
     let amount;
     let change = 0;
-    let tip;
+    let tip = 0;
     let payModal;
     let view = {};
     async function payment(id, name, vehicle, what, price, workers){
@@ -17,6 +17,7 @@
 
     async function print(id){
         let selected_workers = [];
+        let profitShare = Number(view.price/2);
         let sumOfTip = 0;
         let sumOfpay = 0;
         let divisionOfPay = Number(parseFloat((view.price/2)/view.workers.length).toFixed(2));
@@ -29,6 +30,34 @@
             await updateDoc(doc(db, 'transactions', id),{
             status: 'paid'
             });
+            await addDoc(collection(db, 'report'), {
+				id: view.id,
+				name: view.name,
+				profit: (view.price/2),
+				transactAt: (Intl.DateTimeFormat('en-PH', { dateStyle: 'full', timeStyle: 'short' }).format()),
+                where: 'in-shop'
+			});
+
+            // para sa report
+            let date = Intl.DateTimeFormat('en-PH', { dateStyle: 'full' }).format();
+            const queryDateExist = query(collection(db, 'profit_reports'), where('date', '==', date));
+            const querySnapshot = await getDocs(queryDateExist);
+            const date_exist = querySnapshot.docs.map((doc) => ({id: doc.id, ...doc.data()}));
+            // let sumProfit = profitShare + date_exist[0].profit;
+            // console.log(date_exist);
+            // console.log(typeof profitShare, profitShare,typeof sumProfit, sumProfit, typeof date_exist[0].profit, date_exist[0].profit);
+            if(date_exist.length === 0){
+                await addDoc(collection(db, 'profit_reports'), {
+                    date: date,
+                    profit: profitShare
+                })
+            }else{
+                let sumProfit = profitShare + date_exist[0].profit;
+                await updateDoc(doc(db, 'profit_reports', date_exist[0].id),{
+                    profit: sumProfit
+                });
+            }
+
             for(let i = 0; i < selected_workers.length; i++){
                 console.log(selected_workers[i].id);
                 sumOfpay = divisionOfPay+selected_workers[i].pay
@@ -61,7 +90,7 @@
 <td class="py-4 px-6 text-center text-sm">{transaction.createdAt}</td> 
 <td class="py-4 px-6 text-left text-sm">₱ {parseFloat(transaction.price).toFixed(2)}</td>
 <td class="py-4 px-6 text-center text-sm">
-    <span class="bg-orange-100 text-orange-600 py-1 px-3 rounded-full text-xs font-bold">{transaction.status}</span>
+    <span class="{transaction.status==='paid'? 'bg-teal-100 text-teal-700' : 'bg-orange-100 text-orange-600'} py-1 px-3 rounded-full text-xs font-bold">{transaction.status}</span>
 </td>
 <td class="px-4 py-3">
     <div  class="flex items-center space-x-4 text-sm">
