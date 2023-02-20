@@ -1,8 +1,7 @@
 export let price_matrix = {
 	Jeepney: {
-		'Full wash': 150,
-		'Inner only': 75,
-		'Outer only': 75
+		'Full wash': 250,
+		'Pressure wash only': 125
 	},
 	Tricycle: {
 		'Full wash': 100,
