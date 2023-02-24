@@ -1,5 +1,5 @@
 <script>
-	import { collection, query, onSnapshot } from 'firebase/firestore';
+	import { collection, query, onSnapshot, where } from 'firebase/firestore';
 	import { db } from '$lib/firebase';
 	import BookingItem from './BookingItem.svelte';
 
@@ -13,21 +13,13 @@
 
 <table class="min-w-max w-full table-auto shadow-lg my-6">
 	<thead>
-		<!-- <tr>
-			<th>ID</th>
-			<th>Name</th>
-			<th>EMAIL</th>
-			<th>PACKAGE</th>
-			<th>DATETIME</th>
-			<th>IS FINISH?</th>
-		</tr> -->
 		<tr class="text-gray-700 uppercase text-xs leading-normal" style="background-color: #f2f2f2;">
             <th class="rounded-tl-lg"></th>
             <th class="py-4 px-4 text-left">Customer</th>
-            <th class="py-4 px-4 text-left">Email</th>
-            <th class="py-4 px-4 text-center">Date & Time</th>
-            <th class="py-3 px-4 text-left">wash Type</th>
-            <th class="py-4 px-4 text-left">Amount</th>
+            <th class="py-4 px-4 text-left">Vehicle</th>
+            <th class="py-3 px-4 text-left">Wash Type</th>
+			<th class="py-4 px-4 text-center">Date & Time</th>
+            <th class="py-4 px-4 text-center">Status</th>
             <th class="rounded-tr-lg py-3 px-4 text-left"></th>
         </tr>
 	</thead>
