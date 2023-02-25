@@ -18,7 +18,7 @@
 		time: "",
 		createdAt: null,
 		price: 0,
-		finish: false,
+		finish: "pending",
 	}
 
 	onMount(()=>{
@@ -42,6 +42,7 @@
 			email: booking.email,
 			vehicle: booking.vehicle,
 			what: booking.what,
+			price: booking.price,
 		};
 		localStorage.setItem('savepref', JSON.stringify(savepref));
 		
