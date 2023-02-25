@@ -8,7 +8,7 @@
 
 <main class="bg-blue-50">
 	<div class="min-h-screen lg:px-16 px-4 text-sky-700">
-		<p class="text-2xl py-16 ml-52">
+		<p class="text-2xl py-16 text-center">
 			<span class="font-bold">Booking </span> Carwash
 			<span class="font-bold"> Transaction </span>
 		</p>

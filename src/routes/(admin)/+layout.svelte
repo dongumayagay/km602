@@ -20,7 +20,7 @@
 					<span class="text-yellow-400 pr-2">km602</span>Carwash
 				</div>
 			</div>
-			<div class="card-body h-[628px] overflow-auto">
+			<div class="card-body h-[90vh] overflow-auto">
 				<slot />
 			</div>
 		  <!-- <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Open drawer</label> -->

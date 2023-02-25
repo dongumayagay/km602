@@ -28,7 +28,7 @@
     onMount(createchart);
 </script>
 
-<div class="bg-base-100 mt-6 rounded-xl shadow-md card-body">
+<!-- <div class="bg-base-100 mt-6 rounded-xl shadow-md card-body">
     <div class="">
         <h1 class="font-semibold text-2xl">Monthly Profit Report</h1>
         <div class=" mt-4 mb-4 flex justify-between">
@@ -69,4 +69,8 @@
     <div>
         <canvas id="myChart"></canvas>
       </div>
+</div> -->
+
+<div>
+    <canvas id="myChart"></canvas>
 </div>

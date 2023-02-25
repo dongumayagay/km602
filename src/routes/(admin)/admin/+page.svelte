@@ -1,3 +1,9 @@
+<script>
+	import Chart from "./reports/Chart.svelte";
+
+
+</script>
+
 <span class="font-semibold text-2xl mb-8">Dashboard</span>
 
 <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
@@ -69,3 +75,6 @@
 		</div>
 	</div>
 </div>
+
+
+<Chart />
