@@ -17,7 +17,7 @@ export function formatDate(date) {
 	return new Date(date).toLocaleDateString('en-PH', {
 		weekday: 'short',
 		year: 'numeric',
-		month: 'long',
+		month: 'short',
 		day: 'numeric'
 	});
 }
