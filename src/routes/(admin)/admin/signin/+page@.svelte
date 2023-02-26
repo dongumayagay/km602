@@ -20,7 +20,7 @@
 </script>
 
 <main class="bg-blue-50 hero min-h-screen px-6">
-	<div class="card bg-base-100 shadow-lg lg:px-6 h-4/5 max-w-md">
+	<div class="card bg-base-100 shadow-lg lg:px-6 max-w-md">
 		<div class="card-body">
 			<h1 class="text-3xl mt-3 font-bold text-center">Login</h1>
 			<p class="mt-2 tracking-wide text-center">
@@ -29,7 +29,7 @@
 				>
 			</p>
 
-			<form on:submit|preventDefault={submitHandler} class="flex flex-col gap-2 my-4">
+			<form on:submit|preventDefault={submitHandler} class="flex flex-col gap-2 my-4 mt-10">
 				<div class="form-control">
 					<p class="label"><span class="label-text">Email</span></p>
 					<input
