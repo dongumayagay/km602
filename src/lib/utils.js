@@ -1,4 +1,11 @@
-const dateTimeFormat = new Intl.DateTimeFormat('en-PH', { dateStyle: 'full', timeStyle: 'short' });
+const dateTimeFormat = new Intl.DateTimeFormat('en-PH', {   
+	weekday: 'short',
+	month: 'short',
+	day: 'numeric',
+	year: 'numeric',
+	hour: 'numeric',
+	minute: 'numeric' 
+});
 
 export let date = new Date().toLocaleDateString('en-PH', {
 	weekday: 'short',
