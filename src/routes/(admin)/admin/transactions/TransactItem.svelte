@@ -1,6 +1,7 @@
 <script>
     import NewTransaction from './NewTransaction.svelte';
     import { db } from '$lib/firebase';
+    import { printPDF } from '$lib/utils';
 	import { doc, updateDoc, where, query, collection, getDocs, addDoc } from 'firebase/firestore';
 
     export let transaction;
@@ -15,7 +16,6 @@
 
     // set pending to process
     async function setOnProcess(id){
-       alert(id, 'yay');
         await updateDoc(doc(db, 'transactions', id),{
             status: 'on process',
         });
@@ -44,7 +44,7 @@
 			let sumOfpay = 0;
 			let totalPay = 0;
 			let sumOfTip = 0;
-
+            console.log(view);
 
             // process emp salary
             selected_workers.forEach(async (worker)=>{
@@ -63,6 +63,8 @@
             change=0;
 
             payModal = false;
+            
+            printPDF(view);
             await updateDoc(doc(db, 'transactions', id),{
                 status: 'done'
             });
