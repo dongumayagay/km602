@@ -35,10 +35,12 @@
 	</tbody> -->
 	<tbody class="text-sm">
         {#each bookings as booking, i}
-			<tr class="border-b border-gray-200 bg-base-100 hover:bg-gray-200">
-				<td class="py-4 px-6 text-left font-bold text-sm">{i+1}</td>
-				<BookingItem {booking} />
-			</tr>
+			{#if booking.finish == 'confirm'  || booking.finish == 'pending'}
+				<tr class="border-b border-gray-200 bg-base-100 hover:bg-gray-200">
+					<td class="py-4 px-6 text-left font-bold text-sm">{i+1}</td>
+					<BookingItem {booking} />
+				</tr>
+			{/if}
         {/each}
     </tbody>
 </table>

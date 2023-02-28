@@ -1,6 +1,6 @@
 <script>
-	import { formatDateTime } from '$lib/utils';
-	import { doc, updateDoc, where, query, collection, getDocs } from 'firebase/firestore';
+	import { formatDateTime, date, time } from '$lib/utils';
+	import { doc, updateDoc, where, query, collection, getDocs, addDoc, deleteDoc } from 'firebase/firestore';
 	import { db } from '$lib/firebase';
 	import InputWorkers from '../transactions/InputWorkers.svelte';
 
@@ -34,30 +34,50 @@
 
 
 	//pinass yung booking.price para mapass sa confirmworker
-	let process_worker_pay;
-	function processWorker(id, price){
+	let pass_transaction_details;
+	function processWorker(id, name, vehicle, what, price, status){
 		selectWorkerModal = true;
 		
-		process_worker_pay ={id: id, price: price};
+		// transaction ={id: id, price: price};
+		pass_transaction_details = {
+			id: id,
+			name: name,
+			vehicle: vehicle, 
+			what: what,
+			price: price,
+			status: status,
+			workers: selected,
+			createdAt: formatDateTime(date, time)
+		};
 	}
 
 
 	// issave yung mga nagwork sa booking
-	async function confirmWorker(id){
+	// let transaction = {};
+	async function confirmWorker(id, name, vehicle, what, price, status){
+		let transaction = {
+			name: name,
+			vehicle: vehicle, 
+			what: what,
+			price: price,
+			status: status,
+			workers: selected,
+			createdAt: formatDateTime(date, time)
+		};
 		let selected_workers = [];
 		try{
 
-			const q = query(collection(db, 'employee'), where('name', 'in', selected));
-			const querySnapshot = await getDocs(q);
-			selected_workers = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+			// const q = query(collection(db, 'employee'), where('name', 'in', selected));
+			// const querySnapshot = await getDocs(q);
+			// selected_workers = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 			console.log(selected);
 
+			console.log(transaction, id);
 
 			selectWorkerModal = false;
-			await updateDoc(doc(db, 'bookings', id),{
-				finish: 'on process',
-				workers: selected_workers,
-			});
+			await addDoc(collection(db, 'transactions'), transaction);
+			await deleteDoc(doc(db, 'bookings', id));
+
 			
 			
 		} catch(error){
@@ -69,49 +89,51 @@
 
 
 	// ppass mga data sa view para maview sa transact modal
-	function processTransact(id, name, what, vehicle, price, workers){
-		transactModal = true;
-		view = {id:id, name:name, what: what, vehicle: vehicle, price:price, workers:workers};
-		console.log(view.workers.map(worker => worker.name).join(', '));
-	}
+	// function processTransact(id, name, what, vehicle, price, workers){
+	// 	transactModal = true;
+	// 	view = {id:id, name:name, what: what, vehicle: vehicle, price:price, workers:workers};
+	// 	console.log(view.workers.map(worker => worker.name).join(', '));
+	// }
 
 
-	// process salary emp print receipt
-	async function print(id, workers) {
-		try {
-			const divisionOfPay = Number(parseFloat((view.price/2)/workers.length).toFixed(2));
-			const divisionOfTip = Number(parseFloat(tip/workers.length).toFixed(2));
-			let sumOfpay = 0;
-			let totalPay = 0;
-			let sumOfTip = 0;
+	// // process salary emp print receipt
+	// async function print(id, workers) {
+	// 	try {
+	// 		const divisionOfPay = Number(parseFloat((view.price/2)/workers.length).toFixed(2));
+	// 		const divisionOfTip = Number(parseFloat(tip/workers.length).toFixed(2));
+	// 		let sumOfpay = 0;
+	// 		let totalPay = 0;
+	// 		let sumOfTip = 0;
 			
-			workers.forEach(async (worker)=>{
-				sumOfpay = divisionOfPay + worker.pay;
-				sumOfTip = divisionOfTip + worker.tip;
-				totalPay = sumOfTip + sumOfpay;
-				console.log(totalPay, sumOfpay, sumOfTip);
+	// 		workers.forEach(async (worker)=>{
+	// 			sumOfpay = divisionOfPay + worker.pay;
+	// 			sumOfTip = divisionOfTip + worker.tip;
+	// 			totalPay = sumOfTip + sumOfpay;
+	// 			console.log(totalPay, sumOfpay, sumOfTip);
 
-				await updateDoc(doc(db, 'employee', worker.id), {
-					pay: sumOfpay,
-					tip: sumOfTip,
-					total: totalPay
-				});
-			})
+	// 			await updateDoc(doc(db, 'employee', worker.id), {
+	// 				pay: sumOfpay,
+	// 				tip: sumOfTip,
+	// 				total: totalPay
+	// 			});
+	// 		})
 
-			transactModal = false;
-			await updateDoc(doc(db, 'bookings', id),{
-				finish: 'done'
-			});
+	// 		transactModal = false;
+	// 		await updateDoc(doc(db, 'bookings', id),{
+	// 			finish: 'done'
+	// 		});
 			
-			amount='';
-			change=0;
-		} catch (error) {
-			console.log(error);
-			alert(error);
-		}
-	}
+	// 		amount='';
+	// 		change=0;
+	// 	} catch (error) {
+	// 		console.log(error);
+	// 		alert(error);
+	// 	}
+	// }
 
 </script>
+
+
 
 <td class="px-3 py-3">{booking.name}</td>
 <td class="px-3 py-3">{booking.vehicle}</td>
@@ -140,12 +162,9 @@
 		</label>
 		<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 		<ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-			{#if booking.finish === 'on process'}
-				<li><button on:click={processTransact(booking.id, booking.name, booking.what, booking.vehicle, booking.price, booking.workers)}
-					>Process Transaction</button></li>
-			{:else if booking.finish === 'confirm'}
-				<li><button on:click={processWorker(booking.id, booking.price)}
-					>Process Transaction</button></li>
+			{#if booking.finish === 'confirm'}
+				<li><button on:click={processWorker(booking.id, booking.name, booking.vehicle, booking.what, booking.price, 'on process')}
+					>on process</button></li>
 			{:else if booking.finish === 'pending'}
 				<li><button on:click={confirmBooking(booking.id, booking.date, booking.time)}
 					>Confirm</button></li>
@@ -157,13 +176,13 @@
 
 
 
-<input type="checkbox" class="modal-toggle" bind:checked={transactModal}/>
+<!-- <input type="checkbox" class="modal-toggle" bind:checked={transactModal}/>
 {#if transactModal}
 <div class="modal">
   <div class="modal-box  w-11/12 max-w-xl">
     <h3 class="font-bold text-lg">Transaction Summary</h3>
     <hr class="my-2" />
-	<!-- <InputWorkers bind:selected/>	 -->
+	 <InputWorkers bind:selected/>
     <div class="grid grid-cols-2 mt-2 mb-2">
       <div class="font-semibold">
           <p class="my-2">Transaction ID:</p>
@@ -201,7 +220,7 @@
     </div>
   </div>
 </div>
-{/if}
+{/if} -->
 
 
 
@@ -215,7 +234,7 @@
 	  <InputWorkers bind:selected/>	
 		<div class="modal-action">
 			<button on:click={()=>selectWorkerModal=false} class="btn btn-ghost rounded-full">cancel</button>
-			<button on:click={confirmWorker(process_worker_pay.id, process_worker_pay.price)}
+			<button on:click={confirmWorker(pass_transaction_details.id, pass_transaction_details.name, pass_transaction_details.vehicle, pass_transaction_details.what, pass_transaction_details.price, 'on process')}
 			class="btn btn-ghost bg-yellow-400 text-white rounded-full hover:bg-yellow-300 px-8">done</button>
 	  	</div>
 	</div>
