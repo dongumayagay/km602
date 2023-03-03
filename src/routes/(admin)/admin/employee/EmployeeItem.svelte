@@ -26,18 +26,6 @@
         rename = name;
     }
 
-    // async function paymentStatus(id, status ){
-    //     if(status === 'unpaid'){
-    //         await updateDoc(doc(db, 'employee', id),{
-    //         status: 'paid',
-    //         pay: 0,
-    //         tip: 0,
-    //         total: 0
-    //         });
-
-    //     }
-    // }
-    
 </script>
 
 <td class="py-4 px-6 text-left text-sm"><span>{emp.name}</span></td>

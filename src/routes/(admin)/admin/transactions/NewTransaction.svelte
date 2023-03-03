@@ -7,7 +7,7 @@
     import { formatDateTime, date, time } from '$lib/utils';
     import { db } from '$lib/firebase';
     import { addDoc, collection } from 'firebase/firestore';
-	import InputStatus from './InputStatus.svelte';
+	  import InputStatus from './InputStatus.svelte';
 
     export let show=false;
     let selected;
@@ -65,16 +65,6 @@
           <InputName bind:name={transaction.name} on:input={updateFill}/>
           <InputVehicle bind:vehicleType={transaction.vehicle} on:input={updateFill}/>
           <InputService bind:what={transaction.what} bind:price={transaction.price} vehicleType={transaction.vehicle} on:input={updateFill}/>
-          <!-- <div class="form-control">
-            <label for="#" class="label font-medium">
-              <span class="label-text">Status<span class="text-red-500 font-extrabold">*</span></span
-              >
-            </label>
-            <select bind:value={transaction.status} name="status" required class="select w-full max-w-md select-bordered">
-                <option value="pending">pending</option>
-                <option value="on process">on process</option>
-            </select>
-          </div> -->
           <InputStatus bind:status={transaction.status}/>
           <InputWorkers bind:selected/>
 
