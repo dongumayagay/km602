@@ -1,7 +1,7 @@
 <script>
     import { date, time } from '$lib/utils.js'
     import { db } from '$lib/firebase.js';
-    import { collection, query, where, getDocs, doc, updateDoc } from 'firebase/firestore';
+    import { collection, query, where, getDocs, doc, updateDoc, addDoc, setDoc } from 'firebase/firestore';
     import * as XLSX from 'xlsx';
 
     async function generateReport(){
@@ -17,13 +17,66 @@
     //   update worker data set to zero
     if(querySnapshot.size != 0){
 
+      //para sa expenses
+      let total = 0;
+      const date = new Date().toLocaleDateString('en-PH', {weekday: 'short', year: 'numeric', month: 'short', day: 'numeric'});
+      emp_with_salary.forEach((emp)=>{
+        total += emp.pay
+      })
 
-            //  pass to the data
-        const data = [['Name', 'Salary']];
-        Object.values(emp_with_salary).forEach(emp => {
-            const row = [emp.name, emp.pay];
-            data.push(row);
+      let expenses = {
+        date: date,
+        description: 'Employees payout',
+        categories: 'Payroll',
+        amount: total
+      }
+
+      //get the reports
+      try{
+          let date = Intl.DateTimeFormat('en-PH', { dateStyle: 'full' }).format();
+          const queryDateExist = query(collection(db, 'reports'), where('date', '==', date));
+          const querySnapshot = await getDocs(queryDateExist);
+          const date_exist = querySnapshot.docs.map((doc) => ({id: doc.id, ...doc.data()}));
+          
+
+          if(date_exist.length === 0){
+              await addDoc(collection(db, 'reports'), {
+                  date: date,
+                  revenue: 0,
+                  expenses: expenses.amount,
+                  profit: 0
+              })
+          }else{
+              let sumExpenses = expenses.amount + date_exist[0].expenses;
+              await updateDoc(doc(db, 'reports', date_exist[0].id),{
+                  expenses: sumExpenses,
+              });
+          }
+
+      }catch(error){
+          console.log(error);
+      }
+      
+      try{
+
+        console.log(date, total);
+        await addDoc(collection(db, 'expenses'), expenses);
+
+          await updateDoc(doc(db, 'reports', ),{
+            status: 'done'
         });
+
+      }catch(error){
+        console.log(error);
+      }
+
+
+      //  pass to the data
+      const data = [['Name', 'Salary']];
+      Object.values(emp_with_salary).forEach(emp => {
+          const row = [emp.name, emp.pay];
+          data.push(row);
+      });
 
 
       data.push([]);
@@ -47,7 +100,7 @@
         })
 
     }else{
-        alert('Generate Report is not applicable for this moment');   
+        alert('Generate Report is not applicable at this moment');   
     }
 
 

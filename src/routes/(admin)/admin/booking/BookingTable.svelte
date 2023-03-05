@@ -1,11 +1,11 @@
 <script>
-	import { collection, query, onSnapshot, where } from 'firebase/firestore';
+	import { collection, query, onSnapshot, where, orderBy } from 'firebase/firestore';
 	import { db } from '$lib/firebase';
 	import BookingItem from './BookingItem.svelte';
 
 	let bookings = [];
 
-	const q = query(collection(db, 'bookings'));
+	const q = query(collection(db, 'bookings'), orderBy('createdAt', 'desc'));
 	const unsubscribe = onSnapshot(q, (querySnapshot) => {
 		bookings = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 	});

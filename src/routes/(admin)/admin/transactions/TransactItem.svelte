@@ -65,9 +65,42 @@
             payModal = false;
             
             printPDF(view);
+
+            //get the reports
+            try{
+                let date = Intl.DateTimeFormat('en-PH', { dateStyle: 'full' }).format();
+                const queryDateExist = query(collection(db, 'reports'), where('date', '==', date));
+                const querySnapshot = await getDocs(queryDateExist);
+                const date_exist = querySnapshot.docs.map((doc) => ({id: doc.id, ...doc.data()}));
+                
+
+                if(date_exist.length === 0){
+                    await addDoc(collection(db, 'reports'), {
+                        date: date,
+                        revenue: view.price,
+                        expenses: 0,
+                        profit: view.price
+                    })
+                }else{
+                    let sumRevenue = view.price + date_exist[0].revenue;
+                    await updateDoc(doc(db, 'reports', date_exist[0].id),{
+                        revenue: sumRevenue,
+                    });
+                }
+
+            }catch(error){
+                console.log(error);
+            }
+
+
+            payModal = false;
+            
+            printPDF(view);
             await updateDoc(doc(db, 'transactions', id),{
                 status: 'done'
             });
+
+
 
         }catch(error){
             console.log(error);

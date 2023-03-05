@@ -38,7 +38,7 @@
 </script>
 
 
-<td class="py-4 px-6 text-left text-sm"><span>{formatDate(exp.date)}</span></td>
+<td class="py-4 px-6 text-left text-sm"><span>{exp.date}</span></td>
 <td class="py-4 px-6 text-left text-sm"><span>{exp.description}</span></td>
 <td class="py-4 px-6 text-left text-sm"><span>{exp.categories}</span></td>
 <td class="py- px-6 text-left text-sm">₱ {parseFloat(exp.amount).toFixed(2)}</td>
