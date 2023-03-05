@@ -1,5 +1,5 @@
 <script>
-	import Chart from "./reports/Chart.svelte";
+	import Charts from "./reports/Charts.svelte";
 
 
 </script>
@@ -77,4 +77,5 @@
 </div>
 
 
-<Chart />
+
+<Charts />
