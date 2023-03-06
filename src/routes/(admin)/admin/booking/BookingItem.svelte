@@ -3,6 +3,7 @@
 	import { doc, updateDoc, where, query, collection, getDocs, addDoc, deleteDoc } from 'firebase/firestore';
 	import { db } from '$lib/firebase';
 	import InputWorkers from '../transactions/InputWorkers.svelte';
+	import { sendEmail } from '$lib/utils'; 
 
 	export let booking;
 	let amount;
@@ -16,21 +17,47 @@
 
 
 	// coconfirm booking status
-	async function confirmBooking(id, date, time){
+	async function confirmBooking(id, date, time, name, email){
 
-		const q = query(collection(db, 'bookings'), where('date', '==', date), where('time', '==', time), where('finish', '==', 'confirm'));
-		const querySnapshot = await getDocs(q);
-		// const bookings_on_date = querySnapshot.docs.map((doc) =>({...doc.data(), id: doc.id}));
-		console.log(querySnapshot.size);
+		try{
+			let htmlStr = `Dear ${name},<br><br>We are pleased to confirm your carwash booking. Your booking details are as follows:<br><br><b>Date: ${date} </b><br><b>Time: ${time}</b><br><b>Location: Purok 7, Brgy. Ariman, Gubat, Sorsogon</b><br><br>Please arrive on time for your appointment. If you are unable to make it, please let us know at least 24 hours in advance.<br><br>Please note that if you do not show up for your appointment in at least 24 hours in advance, it will be automatically cancelled. This is to ensure that we can accommodate other customers who are waiting in line. You can always book another appointment with us by visiting our <a href="https://km602.vercel.app/" target="_blank">website</a><br><br>We look forward to providing you with an excellent carwash service. If you have any questions or concerns, please do not hesitate to contact us.<br><br>Thank you for choosing our carwash service.<br><br>Best regards,<br><br><b>Km602 Carwash</b>`;
+			const q = query(collection(db, 'bookings'), where('date', '==', date), where('time', '==', time), where('finish', '==', 'confirm'));
+			const querySnapshot = await getDocs(q);
+			// const bookings_on_date = querySnapshot.docs.map((doc) =>({...doc.data(), id: doc.id}));
+			console.log(querySnapshot.size);
 
-		if(querySnapshot.size < 5){
-			await updateDoc(doc(db, 'bookings', id),{
-				finish: 'confirm',
-			});
-		}else{
-			alert(date + ' at ' + time + ' time slot has already filled');
+			if(querySnapshot.size < 5){
+				await updateDoc(doc(db, 'bookings', id),{
+					finish: 'confirm',
+				});
+				//send email
+				const result = await sendEmail({
+					to: email,
+					subject: 'Carwash Booking Confirmed - Reminder on Cancellation Policy',
+					html: htmlStr
+        		});
+			console.log(JSON.stringify(result));
+			alert('Confirmed');
+
+			}else{
+				alert(date + ' at ' + time + ' time slot has already filled!');
+			}
+		}catch(error){
+			console.log(error);
 		}
+
 	}
+
+
+
+	//cacancel yung booking
+	async function cancelBooking(id, name){
+		if (confirm(`Are you sure you want to cancel the booking for ${name}?`)) {
+			await deleteDoc(doc(db, 'bookings', id));
+		}	
+	}
+
+
 
 
 	//pinass yung booking.price para mapass sa confirmworker
@@ -136,6 +163,7 @@
 
 
 <td class="px-3 py-3">{booking.name}</td>
+<td class="px-3 py-3">{booking.email}</td>
 <td class="px-3 py-3">{booking.vehicle}</td>
 <td class="px-4 py-3">{booking.what}</td>
 <td class="px-3 py-3 text-center">
@@ -165,8 +193,10 @@
 			{#if booking.finish === 'confirm'}
 				<li><button on:click={processWorker(booking.id, booking.name, booking.vehicle, booking.what, booking.price, 'on process')}
 					>on process</button></li>
+				<li><button on:click={cancelBooking(booking.id, booking.name)}
+					>cancel</button></li>
 			{:else if booking.finish === 'pending'}
-				<li><button on:click={confirmBooking(booking.id, booking.date, booking.time)}
+				<li><button on:click={confirmBooking(booking.id, booking.date, booking.time, booking.name, booking.email)}
 					>Confirm</button></li>
 			{/if}
 		</ul>

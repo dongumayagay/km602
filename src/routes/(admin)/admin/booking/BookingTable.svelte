@@ -16,6 +16,7 @@
 		<tr class="text-gray-700 uppercase text-xs leading-normal" style="background-color: #f2f2f2;">
             <th class="rounded-tl-lg"></th>
             <th class="py-4 px-4 text-left">Customer</th>
+			<th class="py-4 px-4 text-center">Email</th>
             <th class="py-4 px-4 text-left">Vehicle</th>
             <th class="py-3 px-4 text-left">Wash Type</th>
 			<th class="py-4 px-4 text-center">Date & Time</th>
