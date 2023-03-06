@@ -96,6 +96,7 @@
             payModal = false;
             
             printPDF(view);
+            location = location;
             await updateDoc(doc(db, 'transactions', id),{
                 status: 'done'
             });
