@@ -19,7 +19,7 @@
 
       //para sa expenses
       let total = 0;
-      const date = new Date().toLocaleDateString('en-PH', {weekday: 'short', year: 'numeric', month: 'short', day: 'numeric'});
+      const date = new Date().toLocaleDateString('en-PH', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'});
       emp_with_salary.forEach((emp)=>{
         total += emp.pay
       })
