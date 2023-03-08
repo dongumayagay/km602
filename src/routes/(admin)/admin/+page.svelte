@@ -4,6 +4,11 @@
 
 </script>
 
+
+<svelte:head>
+	<title>Dashboard | km602</title>
+</svelte:head>
+
 <span class="font-semibold text-2xl mb-8">Dashboard</span>
 
 <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
@@ -17,7 +22,7 @@
 		</div>
 
 		<div>
-			<p class="mb-2 text-sm font-medium text-gray-600">Total clients</p>
+			<p class="mb-2 text-sm font-medium text-gray-600">Total workers</p>
 
 			<p class="text-lg font-semibold text-gray-700">6389</p>
 		</div>
@@ -35,7 +40,7 @@
 		</div>
 
 		<div>
-			<p class="mb-2 text-sm font-medium text-gray-600">Account balance</p>
+			<p class="mb-2 text-sm font-medium text-gray-600">Car washed per day </p>
 
 			<p class="text-lg font-semibold text-gray-700">$ 46,760.89</p>
 		</div>
@@ -51,7 +56,7 @@
 		</div>
 
 		<div>
-			<p class="mb-2 text-sm font-medium text-gray-600">New sales</p>
+			<p class="mb-2 text-sm font-medium text-gray-600">Earned profit per day</p>
 
 			<p class="text-lg font-semibold text-gray-700">376</p>
 		</div>
@@ -69,7 +74,7 @@
 		</div>
 
 		<div>
-			<p class="mb-2 text-sm font-medium text-gray-600">Pending contacts</p>
+			<p class="mb-2 text-sm font-medium text-gray-600">Total expenses per day</p>
 
 			<p class="text-lg font-semibold text-gray-700">35</p>
 		</div>

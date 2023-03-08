@@ -8,6 +8,10 @@
 
 </script>
 
+<svelte:head>
+	<title>Employee | km602</title>
+</svelte:head>
+
 <div class="flex justify-between">
     <span class="font-semibold text-2xl mb-8">Employee</span>
     

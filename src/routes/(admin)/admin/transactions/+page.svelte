@@ -8,6 +8,9 @@
 
 </script>
 
+<svelte:head>
+	<title>Transactions | km602</title>
+</svelte:head>
 
 <div class="flex justify-between">
   <span class="font-semibold text-2xl mb-8">Transactions</span>

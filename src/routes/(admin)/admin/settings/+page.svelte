@@ -1,6 +1,6 @@
 <script>
     import { auth } from '$lib/firebase';
-	import { getAuth, reauthenticateWithCredential, updatePassword, EmailAuthProvider } from "firebase/auth";
+	import { reauthenticateWithCredential, updatePassword, EmailAuthProvider } from "firebase/auth";
 
     const user = auth.currentUser;
 
@@ -49,6 +49,12 @@
     }
 
 </script>
+
+<svelte:head>
+	<title>Settings | km602</title>
+</svelte:head>
+
+
 <span class="font-semibold text-2xl mb-8">Settings</span>
 
 

@@ -46,6 +46,10 @@
 
 </script>
 
+<svelte:head>
+	<title>Admin Login</title>
+</svelte:head>
+
 <main class="bg-blue-50 hero min-h-screen px-6">
 	<div class="card bg-base-100 shadow-lg lg:px-6 max-w-md">
 		<div class="card-body">

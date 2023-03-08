@@ -17,6 +17,11 @@ import NewExpenses from "./NewExpenses.svelte";
 
 </script>
 
+
+<svelte:head>
+	<title>Expenses | km602</title>
+</svelte:head>
+
 <div class="flex justify-between">
     <span class="font-semibold text-2xl mb-8">Expenses</span>
     
