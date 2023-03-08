@@ -1,6 +1,6 @@
 <script>
 	import { auth } from '$lib/firebase';
-	import { signInWithEmailAndPassword } from 'firebase/auth';
+	import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 	import { goto } from '$app/navigation';
 	import { userStore } from '$lib/stores';
 
@@ -17,6 +17,33 @@
 			alert(error);
 		}
 	}
+
+
+	function resetpass(){
+		const confirmed = confirm("Are you sure you want to reset your password?", "Yes", "No");
+		const email = "km602system@gmail.com";
+
+
+		if(confirmed){
+
+			sendPasswordResetEmail(auth, email)
+			.then(() => {
+				alert("Password reset email sent! Please check your email");
+			})
+			.catch((error) => {
+				// An error occurred
+				const errorCode = error.code;
+				const errorMessage = error.message;
+				alert(errorMessage + ": " + errorCode);
+				console.error(error);
+			});
+
+
+		}
+
+	}
+
+
 </script>
 
 <main class="bg-blue-50 hero min-h-screen px-6">
@@ -52,7 +79,8 @@
 						class="input input-bordered"
 					/>
 					<p class="label">
-						<a href="/" class="label-text-alt link link-hover">Forgot password?</a>
+						<button on:click={resetpass}
+						class="label-text-alt link link-hover">Forgot password?</button>
 					</p>
 				</div>
 				<div class="form-control my-6">
