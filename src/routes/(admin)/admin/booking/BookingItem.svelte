@@ -37,7 +37,6 @@
 					html: htmlStr
         		});
 			console.log(JSON.stringify(result));
-			alert('Confirmed');
 
 			}else{
 				alert(date + ' at ' + time + ' time slot has already filled!');

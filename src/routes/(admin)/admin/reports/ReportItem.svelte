@@ -29,6 +29,8 @@
                 }
                 
             })
+
+            console.log(transactArr);
         }catch(error){
             console.log(error);
         }

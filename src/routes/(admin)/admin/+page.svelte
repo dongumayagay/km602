@@ -1,5 +1,63 @@
 <script>
+	import { db } from '$lib/firebase.js';
+    import { collection, getDocs, onSnapshot, updateDoc, doc, query, where } from 'firebase/firestore';
+    import { onMount } from 'svelte'; 
+	import { writable } from 'svelte/store';
 	import Charts from "./reports/Charts.svelte";
+
+
+	const daysOpen = writable(0);
+	const empnumber = writable(0);
+	const avecars = writable(0);
+	const aveprofit = writable(0);
+	const aveexpense = writable(0);
+
+
+
+	//get the ave profit and expenses
+	let sumProfit = 0;
+	let sumExpense = 0;
+	onMount(() => {
+		const unsubscribe = onSnapshot(collection(db, 'reports'), (querySnapshot) => {
+		const number = querySnapshot.size;
+		daysOpen.set(number);
+		//compute
+		querySnapshot.forEach((snapshot) => {
+            const data = snapshot.data();
+            const profit = data.profit;
+			const expense = data.expenses;
+			sumProfit += profit;
+			sumExpense += expense;
+			aveprofit.set(sumProfit/$daysOpen);
+			aveexpense.set(sumExpense/$daysOpen);
+            });
+		});
+
+	return unsubscribe;
+	});
+
+
+	//get total emp
+	onMount(() => {
+		const unsubscribe = onSnapshot(collection(db, 'employee'), (querySnapshot) => {
+		const number = querySnapshot.size;
+		empnumber.set(number);
+		});
+
+	return unsubscribe;
+	});
+
+
+	//get the car washed per day
+	onMount(() => {
+		const unsubscribe = onSnapshot(query(collection(db, 'transactions'), where('status', '==', 'done') ), (querySnapshot) => {
+		const number = querySnapshot.size;
+		console.log(number/$daysOpen);
+		avecars.set(number/$daysOpen);
+		});
+
+	return unsubscribe;
+	});
 
 
 </script>
@@ -24,7 +82,7 @@
 		<div>
 			<p class="mb-2 text-sm font-medium text-gray-600">Total workers</p>
 
-			<p class="text-lg font-semibold text-gray-700">6389</p>
+			<p class="text-lg font-semibold text-gray-700">{$empnumber}</p>
 		</div>
 	</div>
 
@@ -40,9 +98,9 @@
 		</div>
 
 		<div>
-			<p class="mb-2 text-sm font-medium text-gray-600">Car washed per day </p>
+			<p class="mb-2 text-sm font-medium text-gray-600">Daily car wash average</p>
 
-			<p class="text-lg font-semibold text-gray-700">$ 46,760.89</p>
+			<p class="text-lg font-semibold text-gray-700">{$avecars.toFixed(2)}</p>
 		</div>
 	</div>
 
@@ -56,9 +114,9 @@
 		</div>
 
 		<div>
-			<p class="mb-2 text-sm font-medium text-gray-600">Earned profit per day</p>
+			<p class="mb-2 text-sm font-medium text-gray-600">Ave profit per day</p>
 
-			<p class="text-lg font-semibold text-gray-700">376</p>
+			<p class="text-lg font-semibold text-gray-700">₱ {$aveprofit.toFixed(2)}</p>
 		</div>
 	</div>
 
@@ -74,9 +132,9 @@
 		</div>
 
 		<div>
-			<p class="mb-2 text-sm font-medium text-gray-600">Total expenses per day</p>
+			<p class="mb-2 text-sm font-medium text-gray-600">Ave expenses per day</p>
 
-			<p class="text-lg font-semibold text-gray-700">35</p>
+			<p class="text-lg font-semibold text-gray-700">₱ {$aveexpense.toFixed(2)}</p>
 		</div>
 	</div>
 </div>
