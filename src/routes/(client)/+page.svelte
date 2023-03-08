@@ -67,7 +67,7 @@
                 <p class="mb-5 text-sky-700 font-medium">
                     Km602 is an innovative carwash that allows you to book your carwash anywhere and everywhere!
                 </p>
-                <a href="/book" class="btn btn-ghost mb-16 bg-yellow-400 text-white rounded-full capitalize px-8 text-base hover:bg-yellow-300">About us</a>
+                <a href="/about" class="btn btn-ghost mb-16 bg-yellow-400 text-white rounded-full capitalize px-8 text-base hover:bg-yellow-300">About us</a>
             </div>
         </div>
     </div>
@@ -232,28 +232,6 @@
     </div>
 
     
-
-    <!-- teams -->
-    <div class="min-h-full text-center text-sky-700 pb-36 lg:px-16">
-        <p class="text-4xl my-16 font-bold"><span class="font-normal">Meet Our</span> Teams</p>
-        <div class="lg:grid lg:grid-cols-3 lg:gap-x-16 text-lg font-semibold">
-            <center>
-                <img alt="book" src="/img/avatar1.webp" class="lg:w-3/4 w-1/2 my-2">
-                <p>Owner</p>
-            </center>
-            <center>
-                <img alt="time" src="/img/avatar2.webp" class="lg:w-3/4 w-1/2 my-2">
-                <p>Worker</p>
-            </center>
-            <center>
-                <img alt="train" src="/img/avatar3.webp" class="lg:w-3/4 w-1/2 my-2">
-                <p>Worker</p>
-            </center>
-        </div>
-        <center><a href="/book" class="btn btn-ghost mt-24 bg-yellow-400 text-white rounded-full capitalize px-8 text-base hover:bg-yellow-300">learn more</a></center>
-    </div>
-
-
     <div class="h-60"></div>
 
 </main>

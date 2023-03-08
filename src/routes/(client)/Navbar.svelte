@@ -11,9 +11,8 @@
 	<div class="absolute top-0 my-16 bg-sky-50 left-0 w-full {show?`block`:`hidden`}">
 		<center><ul class="gap-16 lg:flex min-h-screen">
 			<li class="my-12"><a class="active:bg-transparent hover:bg-transparent hover:text-blue-500" href="/">Home</a></li>
-			<li class="my-12"><a href="/services" class="active:bg-transparent hover:text-blue-500 hover:bg-transparent">About Us</a></li>
+			<li class="my-12"><a href="/about" class="active:bg-transparent hover:text-blue-500 hover:bg-transparent">About Us</a></li>
 			<li class="my-12"><a href="/services" class="active:bg-transparent  hover:bg-transparent hover:text-blue-500">Our Services</a></li>
-			<li class="my-12"><a href="/services" class="active:bg-transparent hover:text-blue-500 hover:bg-transparent">Our Teams</a></li>
 			<li class="my-12"><a href="/book" class="rounded-full bg-sky-700 px-8 py-3 text-white hover:bg-sky-600">Book now</a></li>
 		  </ul></center>
 	</div>
@@ -21,9 +20,8 @@
 	<div class="flex-none hidden lg:block">
 	  <center><ul class="gap-16 lg:flex">
 		<li class="mt-8 mx-6 lg:m-0"><a class="active:bg-transparent hover:bg-transparent hover:text-blue-500" href="/">Home</a></li>
-		<li class="my-6 mx-6 lg:m-0"><a href="/services" class="active:bg-transparent hover:text-blue-500 hover:bg-transparent">About Us</a></li>
+		<li class="my-6 mx-6 lg:m-0"><a href="/about" class="active:bg-transparent hover:text-blue-500 hover:bg-transparent">About Us</a></li>
 		<li class="my-6 mx-6 lg:m-0"><a href="/services" class="active:bg-transparent  hover:bg-transparent hover:text-blue-500">Our Services</a></li>
-		<li class="my-6 mx-6 lg:m-0"><a href="/services" class="active:bg-transparent hover:text-blue-500 hover:bg-transparent">Our Teams</a></li>
 		<li class="mb-8 mx-6 lg:m-0"><a href="/book" class="rounded-full bg-sky-700 px-8 py-3 text-white hover:bg-sky-600">Book now</a></li>
 	  </ul></center>
 	</div>
