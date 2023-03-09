@@ -82,7 +82,7 @@
             XLSX.writeFile(workbook, `${date}_Full_Report.xlsx`);
 
         }catch(error){
-
+            console.log(error);
         }
 
     }

@@ -106,69 +106,7 @@
         }catch(error){
             console.log(error);
         }
-        // let selected_workers = [];
-        // let profitShare = Number(view.price/2);
-        // let sumOfTip = 0;
-        // let sumOfpay = 0;
-        // let divisionOfPay = Number(parseFloat((view.price/2)/view.workers.length).toFixed(2));
-        // let divisionOfTip = Number(parseFloat(tip/view.workers.length).toFixed(2));
-        // const q = query(collection(db, 'employee'), where('name', 'in', view.workers));
-        // const querySnapshot = await getDocs(q);
-        // selected_workers = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-        // try {
-        //     payModal = false;
-        //     await updateDoc(doc(db, 'transactions', id),{
-        //     status: 'paid'
-        //     });
-        //     await addDoc(collection(db, 'report'), {
-		// 		id: view.id,
-		// 		name: view.name,
-		// 		profit: (view.price/2),
-		// 		transactAt: (Intl.DateTimeFormat('en-PH', { dateStyle: 'full', timeStyle: 'short' }).format()),
-        //         where: 'in-shop'
-		// 	});
 
-        //     // para sa report
-        //     let date = Intl.DateTimeFormat('en-PH', { dateStyle: 'full' }).format();
-        //     const queryDateExist = query(collection(db, 'profit_reports'), where('date', '==', date));
-        //     const querySnapshot = await getDocs(queryDateExist);
-        //     const date_exist = querySnapshot.docs.map((doc) => ({id: doc.id, ...doc.data()}));
-        //     // let sumProfit = profitShare + date_exist[0].profit;
-        //     // console.log(date_exist);
-        //     // console.log(typeof profitShare, profitShare,typeof sumProfit, sumProfit, typeof date_exist[0].profit, date_exist[0].profit);
-        //     if(date_exist.length === 0){
-        //         await addDoc(collection(db, 'profit_reports'), {
-        //             date: date,
-        //             profit: profitShare
-        //         })
-        //     }else{
-        //         let sumProfit = profitShare + date_exist[0].profit;
-        //         await updateDoc(doc(db, 'profit_reports', date_exist[0].id),{
-        //             profit: sumProfit
-        //         });
-        //     }
-
-        //     for(let i = 0; i < selected_workers.length; i++){
-        //         console.log(selected_workers[i].id);
-        //         sumOfpay = divisionOfPay+selected_workers[i].pay
-        //         sumOfTip = divisionOfTip+selected_workers[i].tip
-        //         let totalPay = sumOfpay+sumOfTip;
-        //         if(totalPay > 0)
-        //         await updateDoc(doc(db, 'employee', selected_workers[i].id),{
-        //         status: 'unpaid'
-        //         });
-        //         await updateDoc(doc(db, 'employee', selected_workers[i].id),{
-        //             pay: sumOfpay,
-        //             tip: sumOfTip,
-        //             total: totalPay
-        //         });
-        //     }
-        //     amount='';
-        //     change=0;
-        // } catch (error) {
-        //     console.log(error);
-        //     alert(error);
-        // }
     }
 
 

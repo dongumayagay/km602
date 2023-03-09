@@ -148,8 +148,10 @@
         });
     }
 
-    onMount(createExpensechart);
-    onMount(createProfitchart);
+    onMount(() => {
+        createExpensechart();
+        createProfitchart();
+    });
 </script>
 
 
