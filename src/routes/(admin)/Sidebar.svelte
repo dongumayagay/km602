@@ -1,6 +1,15 @@
 <script>
 	import { signOut } from 'firebase/auth';
 	import { auth } from '$lib/firebase';
+
+
+	export let show;
+
+	function close(){
+		console.log(show);
+		show=false;
+	}
+
 </script>
 
 <div class="w-64 bg-base-100 min-h-screen font-semibold">
@@ -28,6 +37,7 @@
 				class="flex items-center text-sm py-4 h-19 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out"
 				data-mdb-ripple="true"
 				data-mdb-ripple-color="dark"
+				on:click={close}
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -53,6 +63,7 @@
 				class="flex items-center text-sm py-4 h-19 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out"
 				data-mdb-ripple="true"
 				data-mdb-ripple-color="dark"
+				on:click={close}
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -78,6 +89,7 @@
 				class="flex items-center text-sm py-4 h-19 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out"
 				data-mdb-ripple="true"
 				data-mdb-ripple-color="dark"
+				on:click={close}
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -104,6 +116,7 @@
 				class="flex items-center text-sm py-4 h-19 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out"
 				data-mdb-ripple="true"
 				data-mdb-ripple-color="dark"
+				on:click={close}
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -130,6 +143,7 @@
 				class="flex items-center text-sm py-4 h-19 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out"
 				data-mdb-ripple="true"
 				data-mdb-ripple-color="dark"
+				on:click={close}
 			>
 				<svg 
 				xmlns="http://www.w3.org/2000/svg" 
@@ -155,6 +169,7 @@
 				href="/admin/reports"
 				data-mdb-ripple="true"
 				data-mdb-ripple-color="dark"
+				on:click={close}
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -181,6 +196,7 @@
 				class="flex items-center text-sm py-4 h-19 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out"
 				data-mdb-ripple="true"
 				data-mdb-ripple-color="dark"
+				on:click={close}
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
