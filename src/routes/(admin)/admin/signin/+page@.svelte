@@ -19,26 +19,22 @@
 	}
 
 
-	function resetpass(){
+	async function resetpass(){
 		const confirmed = confirm("Are you sure you want to reset your password?", "Yes", "No");
 		const email = "km602system@gmail.com";
 
 
-		if(confirmed){
-
-			sendPasswordResetEmail(auth, email)
-			.then(() => {
+		if (confirmed) {
+			try {
+				await sendPasswordResetEmail(auth, email);
 				alert("Password reset email sent! Please check your email");
-			})
-			.catch((error) => {
+			} catch (error) {
 				// An error occurred
 				const errorCode = error.code;
 				const errorMessage = error.message;
 				alert(errorMessage + ": " + errorCode);
 				console.error(error);
-			});
-
-
+			}
 		}
 
 	}

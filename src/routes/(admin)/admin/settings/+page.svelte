@@ -7,45 +7,43 @@
     console.log(user);
 
 
-    function submitHandler(event){
-        const confirmed = confirm("Are you sure you want to change your password?","Yes", "No");
+    
+    async function submitHandler(event) {
+        const confirmed = confirm("Are you sure you want to change your password?", "Yes", "No");
         const form = event.target;
         const data = Object.fromEntries(new FormData(form));
+
         console.log(data.currentpass, data.confirmpass, data.newpass);
 
         const credential = EmailAuthProvider.credential(user.email, data.currentpass);
 
 
-        if(confirmed){
+        if (confirmed) {
 
+            try {
+                await reauthenticateWithCredential(user, credential);
 
-            reauthenticateWithCredential(user, credential).then(() => {
+                if (data.newpass === data.confirmpass) {
 
-            if (data.newpass === data.confirmpass) {
-                
-                updatePassword(user, data.newpass).then(() => {
+                    await updatePassword(user, data.newpass);
 
-                    alert("Password updated successfullly");
+                    alert("Password updated successfully");
                     console.log("Password updated successfully");
                     form.reset();
 
-                }).catch((error) => {
+                } else {
+                    alert("New password and confirmation do not match");
+                }
+
+            } catch (error) {
+
+                if (error.code === "auth/wrong-password") {
+                    alert("Current Password do not match!");
+                } else {
                     console.error("Error updating password:", error);
-                });
-
-            } else {
-
-                alert("New password and confirmation do not match");
-
+                }
             }
-            }).catch((error) => {
-                alert("Current Password do not match!");
-                console.error("Error re-authenticating user:", error);
-            });
-
-
         }
-
     }
 
 </script>
