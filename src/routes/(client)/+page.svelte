@@ -9,7 +9,7 @@
         <div class="hero-content flex-col lg:flex-row-reverse">
             <img alt="header" src="/img/header.webp" class="lg:w-1/2">
             <div>
-                <h1 class="mb-5 text-5xl leading-snug text-sky-700">Brand <span class="font-bold">New Touch</span> less Car <span class="font-bold">Wash</span></h1>
+                <h1 class="mb-5 text-5xl leading-snug text-sky-700">Brand <span class="font-bold">New Touch</span> Brand New <span class="font-bold">Car</span></h1>
                 <p class="mb-5 text-sky-700 font-medium">
                     Go for a pampered wash where every car is pampered to look like new ― the ultimate full service wash. Let us wash it for you
                 </p>
