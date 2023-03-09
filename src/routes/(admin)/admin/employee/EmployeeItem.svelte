@@ -26,27 +26,15 @@
         rename = name;
     }
 
-    async function paymentStatus(id, status ){
-        if(status === 'unpaid'){
-            await updateDoc(doc(db, 'employee', id),{
-            status: 'paid',
-            pay: 0,
-            tip: 0,
-            total: 0
-            });
-
-        }
-    }
-    
 </script>
 
 <td class="py-4 px-6 text-left text-sm"><span>{emp.name}</span></td>
 <td class="py- px-6 text-left text-sm">₱ {parseFloat(emp.pay).toFixed(2)}</td>
 <td class="py-4 px-6 text-center text-sm">₱ {parseFloat(emp.tip).toFixed(2)}</td>
 <td class="py-4 px-6 text-center text-sm">₱ {parseFloat(emp.total).toFixed(2)}</td>
-<td class="py-4 px-6 text-center text-sm">
+<!-- <td class="py-4 px-6 text-center text-sm">
     <span class="py-1 px-3 rounded-full text-xs font-bold {emp.status==='unpaid'? 'bg-orange-100 text-orange-700' : 'bg-green-100 text-green-700'}">{emp.status}</span>
-</td>
+</td> -->
 <td class=" py-3">
     <div  class="flex items-center space-x-2 text-sm">
     <div class="dropdown dropdown-end">
@@ -58,7 +46,7 @@
         </label>
         <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
         <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-        <li><button on:click={paymentStatus(emp.id, emp.status)}>Pay</button></li>
+        <!-- <li><button on:click={paymentStatus(emp.id, emp.status)}>Pay</button></li> -->
         <li><button on:click={updateShow(emp.id, emp.name)}>Rename</button></li>
         <li><button on:click={deleteEmp(emp.id)}>Delete</button></li>
         </ul>

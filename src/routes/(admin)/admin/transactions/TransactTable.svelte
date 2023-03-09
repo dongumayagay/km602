@@ -1,13 +1,13 @@
 <script>
     import { db } from '$lib/firebase';
-	import { collection, query, onSnapshot } from 'firebase/firestore';
+	import { collection, query, onSnapshot, where, orderBy } from 'firebase/firestore';
 	import { onMount } from 'svelte';
     import TransactItem from './TransactItem.svelte';
     
     let transactions = [];
 
     onMount(() => {
-        const unsubscribe = onSnapshot(query(collection(db, 'transactions')), (querySnapshot) => {
+        const unsubscribe = onSnapshot(query(collection(db, 'transactions'), orderBy('createdAt', 'desc')), (querySnapshot) => {
         transactions = querySnapshot.docs.map((doc) => ({id: doc.id, ...doc.data() }));
         });
         return () => unsubscribe();

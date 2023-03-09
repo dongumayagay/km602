@@ -1,12 +1,20 @@
 <script>
 	import EmployeeTable from './EmployeeTable.svelte';
 	import NewEmployee from './NewEmployee.svelte';
+  import EmployeeReport from './EmployeeReport.svelte';
+
 
   let show;
+
 </script>
+
+<svelte:head>
+	<title>Employee | km602</title>
+</svelte:head>
 
 <div class="flex justify-between">
     <span class="font-semibold text-2xl mb-8">Employee</span>
+    
       <!-- open modal -->
     <button 
       on:click={()=>show = true}
@@ -17,5 +25,9 @@
     </button>
 </div>
 
+
+
+
+<EmployeeReport />
 <EmployeeTable />
 <NewEmployee bind:show/>

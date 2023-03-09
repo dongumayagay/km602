@@ -1,11 +1,11 @@
 <script>
-	import { collection, query, onSnapshot } from 'firebase/firestore';
+	import { collection, query, onSnapshot, where, orderBy } from 'firebase/firestore';
 	import { db } from '$lib/firebase';
 	import BookingItem from './BookingItem.svelte';
 
 	let bookings = [];
 
-	const q = query(collection(db, 'bookings'));
+	const q = query(collection(db, 'bookings'), orderBy('createdAt', 'desc'));
 	const unsubscribe = onSnapshot(q, (querySnapshot) => {
 		bookings = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 	});
@@ -13,21 +13,14 @@
 
 <table class="min-w-max w-full table-auto shadow-lg my-6">
 	<thead>
-		<!-- <tr>
-			<th>ID</th>
-			<th>Name</th>
-			<th>EMAIL</th>
-			<th>PACKAGE</th>
-			<th>DATETIME</th>
-			<th>IS FINISH?</th>
-		</tr> -->
 		<tr class="text-gray-700 uppercase text-xs leading-normal" style="background-color: #f2f2f2;">
             <th class="rounded-tl-lg"></th>
             <th class="py-4 px-4 text-left">Customer</th>
-            <th class="py-4 px-4 text-left">Email</th>
-            <th class="py-4 px-4 text-center">Date & Time</th>
-            <th class="py-3 px-4 text-left">wash Type</th>
-            <th class="py-4 px-4 text-left">Amount</th>
+			<th class="py-4 px-4 text-center">Email</th>
+            <th class="py-4 px-4 text-left">Vehicle</th>
+            <th class="py-3 px-4 text-left">Wash Type</th>
+			<th class="py-4 px-4 text-center">Date & Time</th>
+            <th class="py-4 px-4 text-center">Status</th>
             <th class="rounded-tr-lg py-3 px-4 text-left"></th>
         </tr>
 	</thead>
@@ -43,10 +36,12 @@
 	</tbody> -->
 	<tbody class="text-sm">
         {#each bookings as booking, i}
-			<tr class="border-b border-gray-200 bg-base-100 hover:bg-gray-200">
-				<td class="py-4 px-6 text-left font-bold text-sm">{i+1}</td>
-				<BookingItem {booking} />
-			</tr>
+			{#if booking.finish == 'confirm'  || booking.finish == 'pending'}
+				<tr class="border-b border-gray-200 bg-base-100 hover:bg-gray-200">
+					<td class="py-4 px-6 text-left font-bold text-sm">{i+1}</td>
+					<BookingItem {booking} />
+				</tr>
+			{/if}
         {/each}
     </tbody>
 </table>
