@@ -21,8 +21,8 @@
 	</div>
 	<div>
 		<span class="footer-title">Opening Hours</span>
-		<span class="label-text">Saturday - Sunday</span>
-		<span class="label-text">7:00AM to 7:00PM</span>
+		<span class="label-text">Monday - Sunday</span>
+		<span class="label-text">8:00AM to 5:00PM</span>
 	</div>
 </footer>
 <footer class="footer px-10 py-4 border-t bg-gray-50 text-base-content border-base-300">
