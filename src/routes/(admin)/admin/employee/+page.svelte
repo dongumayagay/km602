@@ -28,6 +28,6 @@
 
 
 
-<EmployeeReport />
+<!-- <EmployeeReport /> -->
 <EmployeeTable />
 <NewEmployee bind:show/>

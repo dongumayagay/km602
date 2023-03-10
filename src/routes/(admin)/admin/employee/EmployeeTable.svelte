@@ -3,16 +3,44 @@
     import { collection, onSnapshot } from 'firebase/firestore';
 	import EmployeeItem from './EmployeeItem.svelte';
     import { onMount } from 'svelte';
+    import { createSearchStore, searchHandler } from '$lib/stores.js';
+	import EmployeeReport from './EmployeeReport.svelte';
 
     let listOfEmp = [];
-    
+
+    let searchEmp;
+    let searchStore;
+    let unsubscribe;
     onMount(() => {
-        const unsubscribe = onSnapshot(collection(db, 'employee'), (querySnapshot) => {
+        unsubscribe = onSnapshot(collection(db, 'employee'), (querySnapshot) => {
         listOfEmp = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+        console.log(listOfEmp);
+                
+        searchEmp = listOfEmp.map((emp) => ({
+            ...emp,
+            searchTerms: `${emp.id} ${emp.name}`
+        }))
+        searchStore = createSearchStore(searchEmp);
+
+        unsubscribe = searchStore.subscribe((model) => searchHandler(model));
+
         });
         return () => unsubscribe();
     })
+
 </script>
+
+
+
+{#if $searchStore}
+<div class="flex justify-between">
+    <EmployeeReport/>
+    <input bind:value={$searchStore.search} type="search" placeholder="Search here..." class="input input-bordered w-full max-w-xs" />
+</div>
+  <!-- <pre>{JSON.stringify($searchStore.filtered)}</pre> -->
+
+<!-- <pre>{JSON.stringify($searchStore.filtered)}</pre> -->
+<!-- <EmployeeReport {listOfEmp} /> -->
 
 
 <table class="min-w-max w-full table-auto shadow-lg my-6">
@@ -27,7 +55,7 @@
         </tr>
     </thead>
     <tbody class="text-base">
-      {#each listOfEmp as emp, i}
+      {#each $searchStore.filtered as emp, i}
         <tr class="border-b border-gray-200 bg-base-100 hover:bg-gray-200">
             <td class="py-4 px-6 text-left font-bold text-sm">{i+1}</td>
             <EmployeeItem {emp} />
@@ -35,3 +63,4 @@
       {/each}
     </tbody>
 </table>
+{/if}

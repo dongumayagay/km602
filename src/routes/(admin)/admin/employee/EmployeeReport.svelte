@@ -4,6 +4,7 @@
     import { collection, query, where, getDocs, doc, updateDoc, addDoc, setDoc } from 'firebase/firestore';
     import * as XLSX from 'xlsx';
 
+
     async function generateReport(){
     try{
 
@@ -114,7 +115,7 @@
 
 
 <!-- generate report and search -->
-<div class="flex justify-between">
+<!-- <div class="flex justify-between"> -->
     <div>
         
       <button on:click={generateReport}
@@ -137,5 +138,4 @@
     </button> 
     </div>
     
-    <input type="text" placeholder="Search here" class="input input-bordered w-full max-w-xs" />
-</div>
+<!-- </div> -->

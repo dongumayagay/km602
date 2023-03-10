@@ -2,20 +2,39 @@
     import { db } from '$lib/firebase.js';
     import { collection, onSnapshot } from 'firebase/firestore';
     import { onMount } from 'svelte';
+    import { createSearchStore, searchHandler } from '$lib/stores.js';
 	import ExpensesItem from './ExpensesItem.svelte';
 
 
     let listOfExp = [];
     
+
+    let searchExp;
+    let searchStore;
+    let unsubscribe;
     onMount(() => {
-        const unsubscribe = onSnapshot(collection(db, 'expenses'), (querySnapshot) => {
+        unsubscribe = onSnapshot(collection(db, 'expenses'), (querySnapshot) => {
         listOfExp = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+
+        searchExp = listOfExp.map((exp) => ({
+				...exp,
+				searchTerms: `${exp.categories} ${exp.date} ${exp.description}`
+			}))
+			searchStore = createSearchStore(searchExp);
+
+			unsubscribe = searchStore.subscribe((model) => searchHandler(model));
+
         });
         return () => unsubscribe();
     })
 
 </script>
 
+
+{#if $searchStore}
+<div class="flex justify-end">
+    <input bind:value={$searchStore.search} type="search" placeholder="Search here" class="input input-bordered w-full max-w-xs" />
+</div>
 <table class="min-w-max w-full table-auto shadow-lg my-6">
     <thead class="">
         <tr class="text-gray-700 uppercase text-xs leading-normal" style="background-color: #f2f2f2;">
@@ -28,7 +47,7 @@
         </tr>
     </thead>
     <tbody class="text-base">
-      {#each listOfExp as exp, i}
+      {#each $searchStore.filtered as exp, i}
         <tr class="border-b border-gray-200 bg-base-100 hover:bg-gray-200">
             <td class="py-4 px-6 text-left font-bold text-sm">{i+1}</td>
             <ExpensesItem {exp}/>
@@ -36,3 +55,4 @@
       {/each}
     </tbody>
 </table>
+{/if}
