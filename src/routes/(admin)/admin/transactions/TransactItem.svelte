@@ -125,9 +125,9 @@
 </script>
 
 
-<td class="py-4 px-6 text-left text-sm">{transaction.id}</td>
+<td class="py-4 px-6 text-left text-sm">{transaction.name}</td>
 <td class="py- px-6 text-left text-sm">
-    {transaction.name}
+    {transaction.vehicle}
 </td>
 <td class="py-4 px-6 text-center text-sm">{transaction.createdAt}</td> 
 <td class="py-4 px-6 text-left text-sm">₱ {parseFloat(transaction.price).toFixed(2)}</td>

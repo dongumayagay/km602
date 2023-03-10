@@ -41,8 +41,8 @@
     <thead class="">
         <tr class="text-gray-700 uppercase text-xs leading-normal" style="background-color: #f2f2f2;">
             <th class="rounded-tl-lg"></th>
-            <th class="py-4 px-6 text-left">ID</th>
             <th class="py-4 px-6 text-left">Customer</th>
+            <th class="py-4 px-6 text-left">Vehicle</th>
             <th class="py-4 px-6 text-center">Date & Time</th>
             <th class="rounded-tr-lg py-3 px-6 text-left">Amount</th>
             <th class="py-4 px-6 text-center">Status</th>

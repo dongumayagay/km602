@@ -83,7 +83,7 @@
 			</a>
 		</li>
 
-		<li>
+		<li class="font-bold">
 			<a
 				href="/admin/booking"
 				class="flex items-center text-sm py-4 h-19 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out"
@@ -106,6 +106,7 @@
 					/>
 				</svg>
 				<span>Booking</span>
+				<div class="badge badge-xs ml-auto badge-info"></div>
 			</a>
 		</li>
 
