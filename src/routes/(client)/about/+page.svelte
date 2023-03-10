@@ -36,36 +36,32 @@
 
 
 
-    <div class="hero min-h-screen lg:px-16 py-60 px-4">
-        <div class="hero-content flex-col gap-y-32">
-
-            <div class="flex-col lg:grid lg:grid-cols-2">
-                <img alt="header" src="/img/vision.png" class="lg:w-full w-full">
-                <div>
-                    <!-- <p class="font-semibold text-lg">WHO WE ARE</p> -->
-                    <p class="text-5xl leading-snug">Our <span class="font-bold">Mission</span></p>
-                    <p class="my-6 text-lg">Our mission at km602 Carwash is to provide superior car wash services with exceptional customer service. Every visit to our car wash will be hassle-free and enjoyable.</p>
-                </div>
+    <div class="hero min-h-screen lg:px-16 py-40 px-4">
+        <div class="hero-content flex-col gap-y-32 lg:flex-row-reverse gap-16">
+            <img alt="header" src="/img/outing.jpg" class="lg:w-1/2 w-full">
+            <div>
+                <p class="text-5xl leading-snug">Our <span class="font-bold">Mission</span></p>
+                <p class="my-6 text-lg">Our mission at km602 Carwash is to provide superior car wash services with exceptional customer service. Every visit to our car wash will be hassle-free and enjoyable.</p>
             </div>
-    
-    
-            <div class="flex-col lg:grid lg:grid-cols-2">
-                
-                <div class="lg:text-right lg:mt-16">
-                    <p class="text-5xl leading-snug">Our <span class="font-bold">Vision</span></p>
-                    <p class="my-6 text-lg">We envision a future where every car owner in the country can experience the high-quality car wash services that we provide.</p>
-                </div>
-
-                <img alt="header" src="/img/mission.png" class="lg:w-full w-full">
-                
-            </div>
-
         </div>
 
     </div>
 
 
 
-    <!-- <div class="h-60"></div> -->
+    <div class="hero min-h-screen bg-gray-50 lg:px-16 px-4">
+        <div class="hero-content flex-col gap-y-32 lg:flex-row gap-16">
+            <img alt="header" src="/img/star.jpg" class="lg:w-[36%] w-full">
+            <div>
+                <p class="text-5xl leading-snug">Our <span class="font-bold">Vision</span></p>
+                <p class="my-6 text-lg">We envision a future where every car owner in the country can experience the high-quality car wash services that we provide.</p>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class="h-60"></div>
 
 </main>
