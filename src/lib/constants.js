@@ -36,7 +36,5 @@ export const booking_times = [
 	'1:00 PM',
 	'2:00 PM',
 	'3:00 PM',
-	'4:00 PM',
-	'5:00 PM',
-	'6:00 PM'
+	'4:00 PM'
 ];

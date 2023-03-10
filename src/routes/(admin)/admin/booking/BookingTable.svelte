@@ -2,14 +2,42 @@
 	import { collection, query, onSnapshot, where, orderBy } from 'firebase/firestore';
 	import { db } from '$lib/firebase';
 	import BookingItem from './BookingItem.svelte';
+    import { createSearchStore, searchHandler } from '$lib/stores.js';
+	import { onMount } from 'svelte';
 
 	let bookings = [];
 
+	let searchBooking;
+    let searchStore;
+    let unsubscribe;
 	const q = query(collection(db, 'bookings'), orderBy('createdAt', 'desc'));
-	const unsubscribe = onSnapshot(q, (querySnapshot) => {
-		bookings = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-	});
+
+	onMount(()=>{
+
+		unsubscribe = onSnapshot(q, (querySnapshot) => {
+			bookings = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+
+			searchBooking = bookings.map((book) => ({
+				...book,
+				searchTerms: `${book.name} ${book.email}`
+			}))
+			searchStore = createSearchStore(searchBooking);
+
+			unsubscribe = searchStore.subscribe((model) => searchHandler(model));
+		});
+
+		return () => unsubscribe();
+
+	})
+
 </script>
+
+
+{#if $searchStore}
+<div class="flex justify-between">
+    <span class="font-semibold text-2xl mb-8">Bookings</span>
+    <input bind:value={$searchStore.search} type="search" placeholder="Search here" class="input input-bordered w-full max-w-xs" />
+</div>
 
 <table class="min-w-max w-full table-auto shadow-lg my-6">
 	<thead>
@@ -35,7 +63,7 @@
 		</tr>
 	</tbody> -->
 	<tbody class="text-sm">
-        {#each bookings as booking, i}
+        {#each $searchStore.filtered as booking, i}
 			{#if booking.finish == 'confirm'  || booking.finish == 'pending'}
 				<tr class="border-b border-gray-200 bg-base-100 hover:bg-gray-200">
 					<td class="py-4 px-6 text-left font-bold text-sm">{i+1}</td>
@@ -45,3 +73,4 @@
         {/each}
     </tbody>
 </table>
+{/if}

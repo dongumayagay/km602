@@ -24,9 +24,6 @@
     </button>
 </div>
 
-<div class="flex justify-end">
-  <input type="text" placeholder="Search here" class="input input-bordered w-full max-w-xs" />
-</div>
 
 <TransactTable bind:payModal />
 <NewTransaction bind:show bind:fill on:fill-updated={(event) => fill = event.detail}/>

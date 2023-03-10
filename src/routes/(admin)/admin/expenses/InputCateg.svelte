@@ -10,6 +10,7 @@
     <select bind:value={categ} name="categories" required class="select w-full max-w-md select-bordered">
         <option disabled selected value="">Select category</option>
         <option>Cleaning Supplies</option>
+        <option>Payroll</option>
         <option>Utilities</option>
         <option>Maintenance</option>
         <option>Others</option>
