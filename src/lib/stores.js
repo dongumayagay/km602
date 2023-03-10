@@ -34,6 +34,3 @@ export const searchHandler = (store) => {
 		return item.searchTerms.toLowerCase().includes(searchTerm)
 	})
 }
-
-
-export const bookings = writable([]);

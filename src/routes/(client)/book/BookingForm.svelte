@@ -20,6 +20,7 @@
 		createdAt: null,
 		price: 0,
 		finish: "pending",
+		seen: false,
 	}
 
 	onMount(()=>{

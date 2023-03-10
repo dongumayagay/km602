@@ -1,13 +1,40 @@
 <script>
 	import { signOut } from 'firebase/auth';
 	import { auth } from '$lib/firebase';
+	import { db } from '$lib/firebase';
+	import { collection, doc, getDocs, query, where, onSnapshot, updateDoc } from 'firebase/firestore';
+	import { onMount } from 'svelte';
+	
 
 
 	export let show;
+	let num;
+
+	const q = query(collection(db, 'bookings'), where('seen', '==', false));
+
+	onMount(()=>{
+
+		const unsubscribe = onSnapshot(q, (querySnapshot) => {
+			// bookings = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+			num = querySnapshot.size;
+		});
+
+		return () => unsubscribe();
+
+	})
+
 
 	function close(){
 		console.log(show);
 		show=false;
+	}
+
+
+	async function openedbooking(){
+		const querySnapshot = await getDocs(q);
+		querySnapshot.forEach(async (book)=>{
+			await updateDoc(doc(db, 'bookings', book.id), { seen: true });
+		})
 	}
 
 </script>
@@ -83,13 +110,13 @@
 			</a>
 		</li>
 
-		<li class="font-bold">
+		<li class="{num===0 ? 'font-medium' : 'font-bold'}">
 			<a
 				href="/admin/booking"
 				class="flex items-center text-sm py-4 h-19 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out"
 				data-mdb-ripple="true"
 				data-mdb-ripple-color="dark"
-				on:click={close}
+				on:click={openedbooking}
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -106,7 +133,9 @@
 					/>
 				</svg>
 				<span>Booking</span>
-				<div class="badge badge-xs ml-auto badge-info"></div>
+				{#if num != 0}
+					<div class="badge badge-sm ml-auto badge-info text-white">{num}</div>
+				{/if}
 			</a>
 		</li>
 
