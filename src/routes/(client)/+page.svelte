@@ -5,16 +5,22 @@
 
 <main>
     <!-- banner -->
-    <div class="hero min-h-screen lg:px-16 px-4">
-        <div class="hero-content flex-col lg:flex-row-reverse">
-            <img alt="header" src="/img/header.webp" class="lg:w-1/2">
+    <div class="hero min-h-screen" style="background-image: url(/img/hero_km3.jpg);">
+        <div class="hero-overlay bg-sky-700/60"></div>
+        <div class="hero-content text-center text-neutral-content">
+            <div class="max-w-md">
+                <h1 class="mb-5 text-5xl font-bold leading-snug">Brand New Touch Brand New Car</h1>
+                <p class="mb-5 font-medium">Go for a pampered wash where every car is pampered to look like new ― the ultimate full service wash. Let us wash it for you</p>
+                <a href="/book" class="btn btn-ghost bg-yellow-400 text-white rounded-full capitalize px-8 text-base hover:bg-yellow-300">Book Now</a>
+              </div>
+            <!-- <img alt="header" src="/img/header.webp" class="lg:w-1/2">
             <div>
                 <h1 class="mb-5 text-5xl leading-snug text-sky-700">Brand <span class="font-bold">New Touch</span> Brand New <span class="font-bold">Car</span></h1>
                 <p class="mb-5 text-sky-700 font-medium">
                     Go for a pampered wash where every car is pampered to look like new ― the ultimate full service wash. Let us wash it for you
                 </p>
                 <a href="/book" class="btn btn-ghost bg-yellow-400 text-white rounded-full capitalize px-8 text-base hover:bg-yellow-300">Book Now</a>
-            </div>
+            </div> -->
         </div>
     </div>
 
@@ -59,9 +65,9 @@
 
 
     <!-- about -->
-    <div class="min-h-[3/4] bg-blue-50 lg:px-16 px-4">
-        <div class="hero-content flex-col lg:flex-row">
-            <img alt="header" src="/img/about.webp" class="lg:w-1/2">
+    <div class="min-h-[3/4] bg-blue-50 lg:px-16 px-4 py-6">
+        <div class="hero-content gap-16 flex-col lg:flex-row">
+            <img alt="header" src="/img/km2.jpg" class="lg:w-1/2">
             <div>
                 <h1 class="mb-5 text-4xl leading-snug text-sky-700">Get to Know <span class="font-bold">About </span>Us</h1>
                 <p class="mb-5 text-sky-700 font-medium">
