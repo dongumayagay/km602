@@ -11,10 +11,9 @@
             alert('Email submitted successfully');
             form.reset();
             const result = await sendEmail({
-                from: `${data.name} <${data.email}>`,
 				to: 'km602system@gmail.com',
 				subject: `Email Inquiry from Website from <${data.email}>`,
-				html: data.message
+				html: `Sender Name: ${data.name}<br><br>${data.message}`
             });
             console.log(JSON.stringify(result));
         }catch(error){
