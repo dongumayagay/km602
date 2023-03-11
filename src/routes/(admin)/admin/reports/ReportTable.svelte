@@ -42,9 +42,9 @@
 
 
 {#if $searchStore}
-<div class="flex justify-between">
+<div class="lg:flex lg:justify-between md:flex md:justify-between lg:flex-row md:flex-row flex-col">
     <span class="font-semibold text-2xl mb-8">Reports</span>
-    <input bind:value={$searchStore.search} type="search" placeholder="Search here" class="input input-bordered w-full max-w-xs" />
+    <input bind:value={$searchStore.search} type="search" placeholder="Search here" class="input mt-6 lg:mt-0 md:mt-0 input-bordered w-full max-w-xs" />
 </div>
 
 <table class="min-w-max w-full table-auto shadow-lg my-6">
@@ -69,4 +69,13 @@
         {/each}
     </tbody>
 </table>
+
+
+{#if $searchStore.filtered.length === 0  }
+	<center>
+		<p class="text-center font-semibold">No data shown</p>
+		<img alt="no_data" src="/img/no_data.svg" class="w-1/4 my-4">
+	</center>
+{/if}
+
 {/if}

@@ -58,4 +58,13 @@
         {/each}
     </tbody>
 </table>
+
+
+{#if $searchStore.filtered.length === 0  }
+	<center>
+		<p class="text-center font-semibold">No data shown</p>
+		<img alt="no_data" src="/img/no_data.svg" class="w-1/4 my-4">
+	</center>
+{/if}
+
 {/if}

@@ -33,9 +33,9 @@
 
 
 {#if $searchStore}
-<div class="flex justify-between">
+<div class="flex-row lg:flex lg:justify-between">
     <EmployeeReport/>
-    <input bind:value={$searchStore.search} type="search" placeholder="Search here..." class="input input-bordered w-full max-w-xs" />
+    <input bind:value={$searchStore.search} type="search" placeholder="Search here..." class="input input-bordered lg:mt-0 mt-6 w-full max-w-xs" />
 </div>
   <!-- <pre>{JSON.stringify($searchStore.filtered)}</pre> -->
 
@@ -63,4 +63,12 @@
       {/each}
     </tbody>
 </table>
+
+{#if $searchStore.filtered.length === 0  }
+	<center>
+		<p class="text-center font-semibold">No data shown</p>
+		<img alt="no_data" src="/img/no_data.svg" class="w-1/4 my-4">
+	</center>
+{/if}
+
 {/if}

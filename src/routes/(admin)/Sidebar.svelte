@@ -31,6 +31,7 @@
 
 
 	async function openedbooking(){
+		show=false;
 		const querySnapshot = await getDocs(q);
 		querySnapshot.forEach(async (book)=>{
 			await updateDoc(doc(db, 'bookings', book.id), { seen: true });

@@ -34,9 +34,9 @@
 
 
 {#if $searchStore}
-<div class="flex justify-between">
+<div class="lg:flex lg:justify-between md:flex md:justify-between lg:flex-row md:flex-row flex-col">
     <span class="font-semibold text-2xl mb-8">Bookings</span>
-    <input bind:value={$searchStore.search} type="search" placeholder="Search here" class="input input-bordered w-full max-w-xs" />
+    <input bind:value={$searchStore.search} type="search" placeholder="Search here" class="input input-bordered mt-6 md:mt-0 lg:mt-0 w-full max-w-xs" />
 </div>
 
 <table class="min-w-max w-full table-auto shadow-lg my-6">
@@ -70,7 +70,15 @@
 					<BookingItem {booking} />
 				</tr>
 			{/if}
-        {/each}
+		{/each}
     </tbody>
 </table>
+
+{#if $searchStore.filtered.length === 0  }
+	<center>
+		<p class="text-center font-semibold">No data shown</p>
+		<img alt="no_data" src="/img/no_data.svg" class="w-1/4 my-4">
+	</center>
+{/if}
+
 {/if}

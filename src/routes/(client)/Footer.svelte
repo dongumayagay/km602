@@ -4,6 +4,7 @@
 		<a href="/" class="link link-hover">Home</a>
 		<a href="/about" class="link link-hover">About Us</a>
 		<a href="/services" class="link link-hover">Our Services</a>
+		<a href="/contact" class="link link-hover">Contact Us</a>
 		<a href="/book" class="link link-hover">Book</a>
 	</div>
 	<div>
