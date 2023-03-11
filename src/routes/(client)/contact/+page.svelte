@@ -1,3 +1,31 @@
+<script>
+    import { sendEmail } from '$lib/utils'; 
+
+    async function submitHandler(event){
+        const form = event.target;
+        const formdata = new FormData(event.target);
+        const data = Object.fromEntries(formdata);
+        console.log(data);
+
+        try{
+            alert('Email submitted successfully');
+            form.reset();
+            const result = await sendEmail({
+                from: `${data.name} <${data.email}>`,
+				to: 'km602system@gmail.com',
+				subject: `Email Inquiry from Website from <${data.email}>`,
+				html: data.message
+            });
+            console.log(JSON.stringify(result));
+        }catch(error){
+            console.log(error);
+        }
+
+    }
+
+</script>
+
+
 <main class="text-sky-700">
 
     <p class="text-5xl leading-snug text-center mt-16 mb-4">We're All <span class="font-bold">Ears </span></p>
@@ -7,7 +35,7 @@
     <div class="min-h-screen lg:px-16 px-4 my-28">
         <p class="text-center font-bold text-lg my-8">Inquiry Form</p>
         <div class="lg:grid lg:grid-cols-2 lg:gap-4 flex-col">
-            <div>
+            <form on:submit|preventDefault={submitHandler}>
                 <div class="form-control mb-4">
                     <input
                         required
@@ -34,7 +62,7 @@
 				class="btn btn-ghost bg-info hover:bg-info/75 lg:mt-6 mb-6 text-white px-8 capitalize rounded-full text-base"
 				>Submit
 			    </button>
-            </div>
+            </form>
             <div>
                 <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3889.028133367318!2d124.10935939999999!3d12.9059125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2s7Q46W445%2B9P9!5e0!3m2!1sen!2sph!4v1678469124558!5m2!1sen!2sph" title="" width="100%" height="450" style="border:2;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
