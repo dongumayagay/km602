@@ -48,7 +48,7 @@
         <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
         <!-- <li><button on:click={paymentStatus(emp.id, emp.status)}>Pay</button></li> -->
         <li><button on:click={updateShow(emp.id, emp.name)}>Rename</button></li>
-        <li><button on:click={deleteEmp(emp.id)}>Delete</button></li>
+        <li><button on:click={()=>deleteEmp(emp.id)}>Delete</button></li>
         </ul>
     </div>
     </div>
@@ -68,7 +68,7 @@
         </div>
         <div class="card-actions justify-end">
             <button on:click={()=>update=false} class="btn btn-ghost rounded-full w-24">cancel</button>
-            <button on:click={updateEmp(empID, rename)} class="btn btn-info text-white rounded-full w-24">update</button>
+            <button on:click={()=>updateEmp(empID, rename)} class="btn btn-info text-white rounded-full w-24">update</button>
         </div>   
     </div>
 </div>
