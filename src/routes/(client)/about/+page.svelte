@@ -21,7 +21,7 @@
 
     <div class="hero min-h-screen bg-sky-50 lg:px-16 px-4">
         <div class="hero-content flex-col lg:flex-row-reverse">
-            <img alt="header" src="/img/shop.jpg" class="lg:w-1/2 w-full">
+            <img alt="header" src="/img/shop.jpg" class="lg:w-1/2 w-full bg-sky-400 shadow-xl shadow-sky-400/50 ">
             <div>
                 <p class="text-5xl leading-snug">About <span class="font-bold">Us</span></p>
                 <p class="my-6 text-lg">km602 Carwash, a car wash business founded in 2019. Our name is derived from the location of our establishment and we take pride in providing high-quality car wash services for various types of vehicles.</p>
@@ -36,9 +36,9 @@
 
 
 
-    <div class="hero min-h-screen lg:px-16 py-40 px-4">
+    <div class="hero min-h-screen lg:px-16 py-40 px-4 text-right">
         <div class="hero-content flex-col gap-y-32 lg:flex-row-reverse gap-16">
-            <img alt="header" src="/img/outing.jpg" class="lg:w-1/2 w-full">
+            <img alt="header" src="/img/outing.jpg" class="lg:w-1/2 w-full bg-slate-500 shadow-xl shadow-slate-500/50">
             <div>
                 <p class="text-5xl leading-snug">Our <span class="font-bold">Mission</span></p>
                 <p class="my-6 text-lg">Our mission at km602 Carwash is to provide superior car wash services with exceptional customer service. Every visit to our car wash will be hassle-free and enjoyable.</p>
@@ -49,9 +49,9 @@
 
 
 
-    <div class="hero min-h-screen bg-gray-50 lg:px-16 px-4">
+    <div class="hero min-h-screen bg-gray-100 lg:px-16 px-4">
         <div class="hero-content flex-col gap-y-32 lg:flex-row gap-16">
-            <img alt="header" src="/img/star.jpg" class="lg:w-[36%] w-full">
+            <img alt="header" src="/img/star.jpg" class="lg:w-[36%] lg:ml-[6%] w-full bg-red-300 shadow-xl shadow-red-300/50">
             <div>
                 <p class="text-5xl leading-snug">Our <span class="font-bold">Vision</span></p>
                 <p class="my-6 text-lg">We envision a future where every car owner in the country can experience the high-quality car wash services that we provide.</p>

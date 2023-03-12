@@ -13,14 +13,6 @@
                 <p class="mb-5 font-medium">Go for a pampered wash where every car is pampered to look like new ― the ultimate full service wash. Let us wash it for you</p>
                 <a href="/book" class="btn btn-ghost bg-yellow-400 text-white rounded-full capitalize px-8 text-base hover:bg-yellow-300">Book Now</a>
               </div>
-            <!-- <img alt="header" src="/img/header.webp" class="lg:w-1/2">
-            <div>
-                <h1 class="mb-5 text-5xl leading-snug text-sky-700">Brand <span class="font-bold">New Touch</span> Brand New <span class="font-bold">Car</span></h1>
-                <p class="mb-5 text-sky-700 font-medium">
-                    Go for a pampered wash where every car is pampered to look like new ― the ultimate full service wash. Let us wash it for you
-                </p>
-                <a href="/book" class="btn btn-ghost bg-yellow-400 text-white rounded-full capitalize px-8 text-base hover:bg-yellow-300">Book Now</a>
-            </div> -->
         </div>
     </div>
 
@@ -67,7 +59,7 @@
     <!-- about -->
     <div class="min-h-[3/4] bg-blue-50 lg:px-16 px-4 py-6">
         <div class="hero-content gap-16 flex-col lg:flex-row">
-            <img alt="header" src="/img/km2.jpg" class="lg:w-1/2">
+            <img alt="header" src="/img/km2.jpg" class="lg:w-1/2 bg-slate-500 shadow-xl shadow-slate-500/50">
             <div>
                 <h1 class="mb-5 text-4xl leading-snug text-sky-700">Get to Know <span class="font-bold">About </span>Us</h1>
                 <p class="mb-5 text-sky-700 font-medium">
@@ -117,7 +109,7 @@
                         </svg></center>
                     </td>
                 </tr>
-                <tr class="border-b border-gray-100">
+                <tr class="border-b border-gray-100 bg-slate-100">
                     <td class="py-6 font-medium">Tricycle</td>
                     <td class="py-6">
                         <center><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 text-green-500">
@@ -163,7 +155,7 @@
                         </svg></center>
                     </td>
                 </tr>
-                <tr class="border-b border-gray-100">
+                <tr class="border-b border-gray-100 bg-slate-100">
                     <td class="py-6 font-medium">Sedan</td>
                     <td class="py-6">
                         <center><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 text-green-500">
@@ -209,7 +201,7 @@
                         </svg></center>
                     </td>
                 </tr>
-                <tr class="border-b border-gray-100">
+                <tr class="border-b border-gray-100 bg-slate-100">
                     <td class="py-6 font-medium">Motorcycle</td>
                     <td class="py-6">
                         <center><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 text-green-500">
