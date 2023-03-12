@@ -48,17 +48,18 @@
         <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
         <!-- <li><button on:click={paymentStatus(emp.id, emp.status)}>Pay</button></li> -->
         <li><button on:click={updateShow(emp.id, emp.name)}>Rename</button></li>
-        <li><button on:click={deleteEmp(emp.id)}>Delete</button></li>
+        <li><button on:click={()=>deleteEmp(emp.id)}>Delete</button></li>
         </ul>
     </div>
     </div>
 </td>
 
+
+<input type="checkbox" class="modal-toggle" bind:checked={update}/>
 {#if update}
-<div class="fixed inset-0 bg-black/50 grid place-items-center">
-  <div class="card w-1/3 bg-base-100 shadow-xl">
-    <div class="card-body">
-      <h2 class="card-title">Rename Employee</h2>
+<div class="modal">
+    <div class="modal-box gap-4 w-11/12 max-w-xl">
+      <h3 class="font-bold text-lg pb-4 col-span-2">Rename Employee</h3> 
         <div class="form-control py-4">
             <label for="#" class="label">
                 <span class="label-text">Full Name</span>
@@ -66,10 +67,9 @@
             <input type="text" name="name" placeholder="name" class="input input-bordered"bind:value={rename}/>
         </div>
         <div class="card-actions justify-end">
-          <button on:click={()=>update=false} class="btn btn-ghost rounded-full w-24">cancel</button>
-          <button on:click={updateEmp(empID, rename)} class="btn btn-info text-white rounded-full w-24">update</button>
-        </div>
+            <button on:click={()=>update=false} class="btn btn-ghost rounded-full w-24">cancel</button>
+            <button on:click={()=>updateEmp(empID, rename)} class="btn btn-info text-white rounded-full w-24">update</button>
+        </div>   
     </div>
-  </div>
 </div>
 {/if}

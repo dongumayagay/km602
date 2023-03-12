@@ -1,5 +1,4 @@
 <script>
-    import {formatDate} from '$lib/utils.js';
     import { db } from '$lib/firebase.js';
     import { deleteDoc, updateDoc, doc } from 'firebase/firestore';
 	import NewExpenses from './NewExpenses.svelte';

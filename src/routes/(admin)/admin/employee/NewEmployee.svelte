@@ -23,24 +23,23 @@
 </script>
 
 
+<input type="checkbox" class="modal-toggle" bind:checked={show}/>
 {#if show}
-  <div class="fixed inset-0 bg-black/50 grid place-items-center">
-    <div class="card w-1/3 bg-base-100 shadow-xl">
-      <div class="card-body">
-        <h2 class="card-title">Add New Employee</h2>
-        <form on:submit|preventDefault={submitHandler}>
-          <div class="form-control py-4">
-              <label for="#" class="label">
-                  <span class="label-text">Full Name</span>
-              </label>
-              <input type="text" name="name" placeholder="name" class="input input-bordered"/>
-          </div>
-          <div class="card-actions justify-end">
-            <button on:click={()=>show=false} class="btn btn-ghost rounded-full w-24">cancel</button>
-            <button class="btn btn-info text-white rounded-full w-24">save</button>
-          </div>
-        </form>
-      </div>
+  <div class="modal">
+    <div class="modal-box gap-4 w-11/12 max-w-xl">
+      <h3 class="font-bold text-lg pb-4 col-span-2">Add Employee</h3>    
+      <form on:submit|preventDefault={submitHandler}>
+        <div class="form-control py-4">
+            <label for="#" class="label">
+                <span class="label-text">Full Name</span>
+            </label>
+            <input required type="text" name="name" placeholder="name" class="input input-bordered"/>
+        </div>
+        <div class="card-actions justify-end">
+          <button on:click={()=>show=false} class="btn btn-ghost rounded-full w-24">cancel</button>
+          <button class="btn btn-info text-white rounded-full w-24">save</button>
+        </div>
+      </form>
     </div>
   </div>
 {/if}
