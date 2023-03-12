@@ -6,13 +6,14 @@
 
     export let transaction;
 
-    let amount;
-    let change = 0;
+    let amount = 0;
     let tip = 0;
     let payModal;
     let view = {};
     let show;
 
+
+    $: change = (amount - view.price) - tip;
 
     // set pending to process
     async function setOnProcess(id){
@@ -96,7 +97,7 @@
             payModal = false;
             
             printPDF(view);
-            location = location;
+            // location = location;
             await updateDoc(doc(db, 'transactions', id),{
                 status: 'done'
             });
@@ -198,8 +199,8 @@
             <p class="my-2">{new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP' }).format(
               view.price
           )}</p>
-            <input type="text" placeholder="Enter amount here" class="input input-bordered input-sm w-36 mt-12 mb-1" on:change={()=>change= amount-view.price} bind:value={amount}/>
-            <input type="text" placeholder="Enter tip here" class="input input-bordered input-sm w-36 mb-1" on:change={()=>change= (amount-view.price)-tip} bind:value={tip}/>
+            <input type="number" required placeholder="Enter amount here" class="input input-bordered input-sm w-36 mt-12 mb-1" bind:value={amount}/>
+            <input type="number" placeholder="Enter tip here" class="input input-bordered input-sm w-36 mb-1" bind:value={tip}/>
             <input type="text" disabled value="₱ {change}" class="input input-bordered input-sm w-36 " />
         </div>
     </div>
@@ -208,7 +209,7 @@
       <div class="modal-action">
         <button on:click={()=>payModal=false} class="btn btn-ghost rounded-full">cancel</button>
         <button on:click={print(view.id)}
-        class="btn btn-ghost bg-yellow-400 text-white rounded-full hover:bg-yellow-300 px-8">print</button>
+        disabled={change < 0 || amount === undefined ? true : false } class="btn btn-ghost bg-yellow-400 text-white rounded-full hover:bg-yellow-300 px-8">print</button>
       </div>
     </div>
   </div>

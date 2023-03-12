@@ -6,7 +6,7 @@
 
     let expense_categ ={
         'Payroll' : 0,
-        'Supplies': 0,
+        'Cleaning Supplies': 0,
         'Utilities': 0,
         'Maintenance': 0,
         'Others': 0

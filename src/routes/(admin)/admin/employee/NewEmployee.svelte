@@ -33,7 +33,7 @@
             <label for="#" class="label">
                 <span class="label-text">Full Name</span>
             </label>
-            <input type="text" name="name" placeholder="name" class="input input-bordered"/>
+            <input required type="text" name="name" placeholder="name" class="input input-bordered"/>
         </div>
         <div class="card-actions justify-end">
           <button on:click={()=>show=false} class="btn btn-ghost rounded-full w-24">cancel</button>
