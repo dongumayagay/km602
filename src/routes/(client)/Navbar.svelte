@@ -4,8 +4,9 @@
 
 
 <div class="navbar font-medium sticky top-0 z-50 bg-white shadow-sm text-sky-700 lg:px-16">
-	<div class="flex-1 px-2 mx-2 text-blue-500 font-medium text-lg">
-	  <a href="/" class="normal-case"><span class="text-yellow-400 pr-2">km602</span>Carwash</a>
+	<div class="flex-1 text-blue-500 font-medium text-lg">
+	<img alt="avatar" src="/img/logo.png" class="w-16 avatar rounded-full"/>
+	  <a href="/" class="normal-case"><span class="text-yellow-400 px-2">km602</span>Carwash</a>
 	</div>
 
 	<div class="absolute top-0 my-16 bg-sky-50 left-0 w-full {show?`block`:`hidden`}">

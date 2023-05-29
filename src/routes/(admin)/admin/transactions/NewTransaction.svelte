@@ -41,18 +41,17 @@
     }
 
     async function submitHandler() {
-      transaction.createdAt = formatDateTime(date, time);
+      transaction.createdAt = new Date().toLocaleString('en-PH', {weekday: 'short', month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true});
       transaction.workers = selected;
       show=false;
-
+      console.log(transaction);
       try {
           await addDoc(collection(db, 'transactions'), transaction);
       } catch (error) {
           console.log(error);
           alert(error);
       }
-
-	}
+	  }
 </script>
 
 <input type="checkbox" class="modal-toggle" bind:checked={show}/>

@@ -31,6 +31,7 @@
 
 
 	async function openedbooking(){
+		show=false;
 		const querySnapshot = await getDocs(q);
 		querySnapshot.forEach(async (book)=>{
 			await updateDoc(doc(db, 'bookings', book.id), { seen: true });
@@ -43,9 +44,9 @@
 	<ul class="menu px-4 py-1">
 		<div class="dropdown py-2 px-3 flex">
 			<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-			<span tabindex="0" class="btn btn-ghost btn-circle avatar">
-				<div class="w-10 rounded-full">
-					<img alt="avatar" src="https://placeimg.com/80/80/people" />
+			<span tabindex="0" class="btn btn-ghost btn-circle avatar border-2 border-sky-500">
+				<div class="w-22 rounded-full">
+					<img alt="avatar" src="/img/logo.png" />
 				</div>
 			</span>
 			<div class="my-auto ml-2">Administrator</div>

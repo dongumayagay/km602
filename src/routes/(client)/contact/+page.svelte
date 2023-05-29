@@ -1,24 +1,34 @@
 <script>
     import { sendEmail } from '$lib/utils'; 
 
+
     async function submitHandler(event){
         const form = event.target;
         const formdata = new FormData(event.target);
         const data = Object.fromEntries(formdata);
         console.log(data);
 
+        let htmlStr = `Dear ${data.name}, <br><br>Our team has received your inquiry through our website's inquiry form. We appreciate your interest in our services and we will review it as soon as possible.<br><br> If you need immediate assistance, please feel free to call us at +639185321533 and we are happy to help you in any way that we can.<br><br>In the meantime, we would like to thank you for your patience and understanding. We are looking forward to assist you with your inquiry.<br><br>Best regards,<br><br><b>km602</b>`;
+
         try{
             alert('Email submitted successfully');
             form.reset();
             const result = await sendEmail({
-				to: 'km602system@gmail.com',
-				subject: `Email Inquiry from Website from <${data.email}>`,
-				html: `Sender Name: ${data.name}<br><br>${data.message}`
+				to: data.email,
+				subject: 'Thank You for Your Inquiry',
+				html: htmlStr
             });
             console.log(JSON.stringify(result));
         }catch(error){
             console.log(error);
         }
+
+        const result = await sendEmail({
+            to: 'km602system@gmail.com',
+            subject: `Email Inquiry from Website from <${data.email}>`,
+            html: `Sender Name: ${data.name}<br><br>${data.message}`
+        });
+        console.log(JSON.stringify(result));
 
     }
 

@@ -88,7 +88,7 @@
 			price: price,
 			status: status,
 			workers: selected,
-			createdAt: formatDateTime(date, time)
+			createdAt: new Date().toLocaleString('en-PH', {weekday: 'short', month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true})
 		};
 		let selected_workers = [];
 		try{
