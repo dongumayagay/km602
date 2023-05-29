@@ -78,8 +78,8 @@
 		<InputEmail bind:email={booking.email}/>
 		<InputVehicle bind:vehicleType={booking.vehicle} bind:isVehicleSet={isVehicleSet}/>
 		<InputService bind:what={booking.what} bind:price={booking.price} vehicleType={booking.vehicle} bind:isVehicleSet={isVehicleSet}/>
-		<InputDate bind:date={booking.date} />
-		<InputTime bind:time={booking.time} date={booking.date} />
+		<InputDate bind:date={booking.date} bind:isDateSet={isDateSet}/>
+		<InputTime bind:time={booking.time} date={booking.date} bind:isDateSet={isDateSet}/>
 		<div class="pt-4">
 			<button
 				class="btn btn-ghost bg-info hover:bg-info/75 text-white px-8 capitalize rounded-full text-base"
